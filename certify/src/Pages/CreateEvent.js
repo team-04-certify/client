@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 
-export default function Login() {
+export default function CreateEvent() {
   const styles = {
     form: {
       margin: 50,
@@ -10,7 +10,7 @@ export default function Login() {
       paddingLeft: 60,
       paddingRight: 60,
       paddingTop: 45,
-      paddingBottom: 100,
+      paddingBottom: 45,
     },
     title: {
       paddingBottom: 12,
@@ -28,18 +28,23 @@ export default function Login() {
 
   return (
     <Form style={styles.form}>
-      <h4 style={styles.title}>Login</h4>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control style={styles.input} type="email" />
+      <h4 style={styles.title}>Create event</h4>
+      <Form.Group controlId="formBasicTitle">
+        <Form.Label>Title</Form.Label>
+        <Form.Control style={styles.input} type="title" />
       </Form.Group>
 
-      <Form.Group style={styles.content} controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control style={styles.input} type="password" />
+      <Form.Group style={styles.content} controlId="formBasicDate">
+        <Form.Label>Date</Form.Label>
+        <Form.Control style={styles.input} type="Date" />
+      </Form.Group>
+
+      <Form.Group style={styles.content} controlId="formBasicDescription">
+        <Form.Label>Description</Form.Label>
+        <Form.Control style={styles.input} type="Description" />
       </Form.Group>
       <Button style={styles.button} variant="primary" type="submit">
-        Login
+        Create
       </Button>
     </Form>
   );

@@ -1,24 +1,41 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import './App.css';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import "./App.css";
 
-import { LandingPage, Register, Login, Events } from './Pages'
+import {
+  LandingPage,
+  Register,
+  Login,
+  Events,
+  CreateEvent,
+  UpdateEvent,
+} from "./Pages";
+import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
 
 function App() {
   return (
     <div>
+      <NavbarHome />
+      <NavbarDashboard />
+      <NavbarInformation />
       <Switch>
+        <Route path="/update-event">
+          <UpdateEvent />
+        </Route>
+        <Route path="/create-event">
+          <CreateEvent />
+        </Route>
         <Route path="/register">
-          <Register/>
+          <Register />
         </Route>
         <Route path="/login">
-          <Login/>
+          <Login />
         </Route>
         <Route path="/events">
-          <Events/>
+          <Events />
         </Route>
         <Route path="/">
-          <LandingPage/>
+          <LandingPage />
         </Route>
       </Switch>
     </div>
