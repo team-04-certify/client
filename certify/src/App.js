@@ -9,6 +9,7 @@ import {
   Events,
   CreateEvent,
   UpdateEvent,
+  EventInformation,
 } from "./Pages";
 import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
 
@@ -19,6 +20,9 @@ function App() {
       <NavbarDashboard />
       <NavbarInformation />
       <Switch>
+        <Route path="/event-information">
+          <EventInformation />
+        </Route>
         <Route path="/update-event">
           <UpdateEvent />
         </Route>
