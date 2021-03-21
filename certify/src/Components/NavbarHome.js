@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import img from "../assets/logo.svg";
 
@@ -17,11 +18,11 @@ export default function NavbarHome() {
       marginRight: 30,
     },
     buttonContent1: {
-      marginLeft: 30,
       borderRadius: 0,
       borderColor: "#00509D",
       backgroundColor: "#ffff",
       color: "#00509D",
+      textDecoration: "none",
     },
     buttonContent2: {
       marginLeft: 30,
@@ -30,6 +31,9 @@ export default function NavbarHome() {
       backgroundColor: "#00509D",
       color: "#ffff",
     },
+    buttonTitle: {
+      textDecoration: "none",
+    },
   };
 
   return (
@@ -37,13 +41,15 @@ export default function NavbarHome() {
       <Navbar className="justify-content-between">
         <Nav style={styles.logo} className="mr-auto">
           <Navbar.Brand href="#home">
-            <img
-              src={img}
-              width="100"
-              // height="30"
-              className="d-inline-block align-top"
-              alt="Certify logo"
-            />
+            <Link to="/">
+              <img
+                src={img}
+                width="100"
+                // height="30"
+                className="d-inline-block align-top"
+                alt="Certify logo"
+              />
+            </Link>
           </Navbar.Brand>
         </Nav>
         <Nav className="mr-auto">
@@ -58,12 +64,16 @@ export default function NavbarHome() {
           </Nav.Link>
         </Nav>
         <Nav style={styles.button}>
-          <Button style={styles.buttonContent1} variant="outline-primary">
-            Login
-          </Button>
-          <Button style={styles.buttonContent2} variant="outline-primary">
-            Register
-          </Button>
+          <Link style={styles.buttonContent1} to="/login">
+            <Button style={styles.buttonContent1} variant="outline-primary">
+              Login
+            </Button>
+          </Link>
+          <Link style={styles.buttonTitle} to="/register">
+            <Button style={styles.buttonContent2} variant="outline-primary">
+              Register
+            </Button>
+          </Link>
         </Nav>
       </Navbar>
     </>
