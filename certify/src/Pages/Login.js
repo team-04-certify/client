@@ -1,7 +1,16 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { Form, Button, Container } from "react-bootstrap";
+
+import allAction from "../Store/Actions";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const access_token = useSelector((state) => state.organi);
+
   const styles = {
     form: {
       margin: 50,
@@ -27,20 +36,22 @@ export default function Login() {
   };
 
   return (
-    <Form style={styles.form}>
-      <h4 style={styles.title}>Login</h4>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control style={styles.input} type="email" />
-      </Form.Group>
+    <Container className="justify-content-center">
+      <Form style={styles.form}>
+        <h4 style={styles.title}>Login</h4>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control style={styles.input} type="email" />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control style={styles.input} type="password" />
-      </Form.Group>
-      <Button style={styles.button} variant="primary" type="submit">
-        Login
-      </Button>
-    </Form>
+        <Form.Group style={styles.content} controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control style={styles.input} type="password" />
+        </Form.Group>
+        <Button style={styles.button} variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
+    </Container>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import img from "../assets/landing-page.png";
 
@@ -15,6 +16,7 @@ export default function LandingPage() {
       backgroundColor: "#00509D",
       color: "#ffff",
       marginTop: 20,
+      textDecoration: "none",
     },
     title: {
       fontWidth: "bold",
@@ -30,7 +32,9 @@ export default function LandingPage() {
           <h1>about your certificate</h1>
           <p>Create, Send & Validate your event certificate</p>
           <Button style={styles.button} variant="outline-primary">
-            Create certificate
+            <Link style={styles.button} to="/login">
+              Create certificate
+            </Link>
           </Button>
         </Col>
         <Col sm={4}>
