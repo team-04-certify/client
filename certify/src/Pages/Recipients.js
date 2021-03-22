@@ -1,28 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios'
+import Papa from 'papaparse'
 
 import { Form, Button, Container, input } from "react-bootstrap";
-import { NavbarHome, NavbarDashboard, NavbarInformation } from "../Components";
+import RecipientRow from "../Components/RecipientRow"
 
 export default function Recipients() {
+  const [showAdd, setShowAdd] = useState(false)
+  const [input, setInput] = useState(null)
 
+  const clickShowAdd = (e) => {
+    e.preventDefault()
+    setShowAdd(true)
+  }
+
+  const clickCloseAdd = (e) => {
+    e.preventDefault()
+    setShowAdd(false)
+  }
+
+  const getFile = (e) => {
+    Papa.parse(e.target.files[0], {
+      header: true,
+      complete: function(results, _) {
+        setInput(results.data)
+        console.log(results.data)
+      }
+    })
+  }
+
+  const uploadFile = (e) => {
+    e.preventDefault()
+    axios({
+      // url: `${baseUrl}/events`,
+      method: 'POST',
+      headers: {
+        access_token: localStorage.getItem('access_token')
+      },
+      data: input
+    })
+  }
 
   return (
-  
-  <div className="recipient full-height">
-    {/* <NavbarDashboard />
-    <NavbarInformation /> */}
+  <div className="recipient">
     <div className="container">
       <div className="upload-cont card">
         <Form action="">
-            <input type="file" accept=".xls,.xlsx,.csv" />
-          <button className="btn btn-primary">Upload file</button>
+            <input type="file" onChange={(e) => getFile(e)} accept=".csv" />
+          <button onClick={(e) => uploadFile(e)} className="btn btn-primary">Upload file</button>
         </Form>
       </div>
       <div className="recipient-tab d-flex justify-content-center flex-column">
-        <Button className="btn btn-primary">
-          <i className="bi bi-plus-circle-fill mx-2"></i>
-          Add recipient
-        </Button>
+        {
+          !showAdd?
+          <a onClick={(e) => clickShowAdd(e)} className="btn btn-primary">
+            <i className="bi bi-plus-circle-fill mx-2"></i>
+            Add recipient
+          </a>:
+          null
+        }
         <table className="table mt-3">
           <thead className="thead-light">
             <tr>
@@ -35,58 +71,26 @@ export default function Recipients() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Mark Otto</td>
-              <td>Guest</td>
-              <td>mail@mail.com</td>
-              <td>cert-01/event/2021</td>
-              <td>Not yet sent</td>
-              <td>
-                <div className="action-btn">
-                  <a href="#"><i style={{color: '#1265D7'}} className="bi bi-pencil-square"></i></a>
-                  <a href="#"><i style={{color: 'red'}} className="bi bi-trash"></i></a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Mark Otto</td>
-              <td>Guest</td>
-              <td>mail@mail.com</td>
-              <td>cert-01/event/2021</td>
-              <td>Not yet sent</td>
-              <td>
-                <div className="action-btn">
-                  <a href="#"><i style={{color: '#1265D7'}} className="bi bi-pencil-square"></i></a>
-                  <a href="#"><i style={{color: 'red'}}  className="bi bi-trash"></i></a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Mark Otto</td>
-              <td>Guest</td>
-              <td>mail@mail.com</td>
-              <td>cert-01/event/2021</td>
-              <td>Not yet sent</td>
-              <td>
-                <div className="action-btn">
-                  <a href="#"><i style={{color: '#1265D7'}} className="bi bi-pencil-square"></i></a>
-                  <a href="#"><i style={{color: 'red'}} className="bi bi-trash"></i></a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="text" className="form-control form-control-sm" placeholder="Name" /></td>
-              <td><input type="text" className="form-control form-control-sm" placeholder="Role" /></td>
-              <td><input type="email" className="form-control form-control-sm" placeholder="mail@mail.com" /></td>
-              <td><input type="text" className="form-control form-control-sm" placeholder="Cert. no." /></td>
-              <td></td>
-              <td>
-                <div className="action-btn">
-                  <a href="#"><i style={{color: '#1265D7'}} className="bi bi-check-circle-fill"></i></a>
-                  <a href="#"><i style={{color: 'red'}}  className="bi bi-x-circle-fill"></i></a>
-                </div>
-              </td>
-            </tr>
+            <RecipientRow />
+            <RecipientRow />
+            <RecipientRow />
+            {
+              showAdd?
+              <tr>
+                <td><input type="text" className="form-control form-control-sm" placeholder="Name" /></td>
+                <td><input type="text" className="form-control form-control-sm" placeholder="Role" /></td>
+                <td><input type="email" className="form-control form-control-sm" placeholder="mail@mail.com" /></td>
+                <td><input type="text" className="form-control form-control-sm" placeholder="Cert. no." /></td>
+                <td></td>
+                <td>
+                  <div className="action-btn">
+                    <a href="#"><i style={{color: '#1265D7'}} className="bi bi-check-circle-fill"></i></a>
+                    <a onClick={(e) => clickCloseAdd(e)}><i style={{color: 'red'}}  className="bi bi-x-circle-fill"></i></a>
+                  </div>
+                </td>
+              </tr>:
+              null
+            }
           </tbody>
         </table>
       </div>
