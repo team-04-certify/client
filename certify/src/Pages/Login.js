@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
@@ -9,12 +9,26 @@ export default function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const isLogin = useSelector((state) => state.organizer.isLogin);
+  const [error, setError] = useState([]);
+  const errorMsg = useSelector((state) => state.organizer.errors);
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
 
-  const access_token = useSelector((state) => state.organizer.access_token);
+  useEffect(() => {
+    setError(errorMsg);
+    setTimeout(() => setError([]), 3000);
+  }, [errorMsg]);
+
+  useEffect(() => {
+    if (isLogin && history.location.pathname === "/login") {
+      console.log("masuuk");
+      dispatch(allAction.organizer.setLogin(false));
+      history.push("/events");
+    }
+  }, [isLogin]);
 
   const handleOnChange = (e) => {
     console.log(input);
@@ -27,6 +41,7 @@ export default function Login() {
   const handleOnSubmit = () => {
     console.log(input);
     dispatch(allAction.organizer.getLogin(input));
+    history();
     setInput({
       email: "",
       password: "",

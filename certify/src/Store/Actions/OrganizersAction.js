@@ -25,7 +25,7 @@ const setAccessToken = (payload) => {
   return { type: "SET_ACCESS_TOKEN", payload };
 };
 
-const getRegister = (payload) => {
+const register = (payload) => {
   return (dispatch) => {
     dispatch(setLoading(true));
     axios({
@@ -34,13 +34,11 @@ const getRegister = (payload) => {
       data: payload,
     })
       .then((user) => {
-        dispatch(setRegister(user));
-        return true;
+        dispatch(setRegister(true));
       })
       .catch((err) => {
         console.log({ err: err.response.data });
         dispatch(setError(err.response.data));
-        return false;
       });
     dispatch(setLoading(false));
   };
@@ -59,11 +57,12 @@ const getLogin = (payload) => {
         if (response.data.access_token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
-        dispatch(setLoading(response));
+        dispatch(setLogin(response.data));
       })
       .catch((err) => {
         dispatch(setError(err.response.data));
       });
+    dispatch(setLoading(false));
   };
 };
 
@@ -76,7 +75,7 @@ export default {
   setError,
   setOrganizer,
   setRegister,
-  getRegister,
+  register,
   setLogin,
   getLogin,
   setAccessToken,

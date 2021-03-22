@@ -8,6 +8,9 @@ import allAction from "../Store/Actions";
 export default function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const successRegister = useSelector(
+    (state) => state.organizer.successRegister
+  );
   const errorMsg = useSelector((state) => state.organizer.errors);
   // const loading = useSelector()
   console.log({ atas: errorMsg });
@@ -20,7 +23,16 @@ export default function Register() {
 
   useEffect(() => {
     setError(errorMsg);
+    setTimeout(() => setError([]), 3000);
   }, [errorMsg]);
+
+  useEffect(() => {
+    if (successRegister && history.location.pathname === "/register") {
+      console.log("masuuk");
+      dispatch(allAction.organizer.setRegister(false));
+      history.push("/login");
+    }
+  }, [successRegister]);
 
   const onChangeInput = (e) => {
     setInput({
@@ -29,19 +41,9 @@ export default function Register() {
     });
   };
 
-  const handleOnSubmit = async () => {
-    setError([]);
-    let temp = await dispatch(allAction.organizer.getRegister(input));
-    console.log({ temp });
-    console.log({ error });
-    if (error.length > 0) {
-      setError(errorMsg);
-      setTimeout(() => setError([]), 3000);
-      console.log("masuk error");
-    } else {
-      history.push("/login");
-      console.log("masuk login");
-    }
+  const handleOnSubmit = () => {
+    dispatch(allAction.organizer.register(input));
+
     setInput({
       name: "",
       email: "",

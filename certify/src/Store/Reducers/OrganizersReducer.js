@@ -3,6 +3,8 @@ const initialState = {
   loading: false,
   errors: [],
   access_token: null,
+  successRegister: false,
+  isLogin: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -17,20 +19,16 @@ export default function reducer(state = initialState, action) {
         ...state,
         errors: action.payload,
       };
-    case "SET_ORGANIZER":
-      return {
-        ...state,
-        organizer: action.payload,
-      };
     case "SET_REGISTER":
       return {
         ...state,
-        organizer: action.payload,
+        successRegister: action.payload,
       };
     case "SET_LOGIN":
       return {
         ...state,
         organizer: action.payload,
+        isLogin: true,
       };
     case "SET_ACCESS_TOKEN":
       return {
