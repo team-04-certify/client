@@ -24,7 +24,6 @@ export default function CreateEvent() {
       ...input,
       [e.target.id]: e.target.value,
     });
-    console.log({ input });
   };
 
   const handleOnSubmit = async () => {

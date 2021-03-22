@@ -17,20 +17,23 @@ const setEvent = (payload) => {
   return { type: "SET_EVENT", payload };
 };
 
-const getEvents = (payload) => {
+const getEvents = (access_token) => {
   return async (dispatch) => {
     try {
+      console.log("masokkk");
+      // console.log(events);
       dispatch(setLoading(true));
       let events = await axios({
         method: "GET",
-        url: `${baseUrl}/${payload.organizerName}`,
+        url: `${baseUrl}/`,
         headers: {
-          access_token: localStorage.setItem("access_token"),
+          access_token: access_token,
         },
       });
-      console.log({ events });
-      dispatch(setEvents(events));
+
+      dispatch(setEvents(events.data));
     } catch (err) {
+      console.log(err.response);
       dispatch(setError(err));
     }
     dispatch(setLoading(false));
@@ -49,14 +52,31 @@ const addEvent = (payload) => {
           access_token: payload.access_token,
         },
       });
-      console.log({ action: payload.access_token });
-      console.log({ event });
       dispatch(getEvents(event.OrganizerId));
       return event;
     } catch (err) {
       dispatch(setError(err));
     }
     dispatch(setLoading(false));
+  };
+};
+
+const updateEvent = (payload) => {
+  return async (dispatch) => {
+    try {
+      let temp = await axios({
+        method: "PUT",
+        url: `${baseUrl}/events/${payload.id}`,
+        data: payload.data,
+        headers: {
+          access_token: payload.access_token,
+        },
+      });
+
+      dispatch(getEvents(payload.access_token));
+    } catch (err) {
+      dispatch(setError(err));
+    }
   };
 };
 
@@ -67,4 +87,5 @@ export default {
   setEvent,
   getEvents,
   addEvent,
+  updateEvent,
 };
