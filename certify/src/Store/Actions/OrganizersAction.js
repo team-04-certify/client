@@ -55,7 +55,7 @@ const getLogin = (payload) => {
       .then((response) => {
         console.log(response.data);
         if (response.data.access_token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("access_token", response.data.access_token);
         }
         dispatch(setLogin(response.data));
       })

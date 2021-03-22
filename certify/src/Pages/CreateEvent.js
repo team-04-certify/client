@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import allAction from "../Store/Actions";
 
 export default function CreateEvent() {
   const dispatch = useDispatch();
@@ -14,6 +16,38 @@ export default function CreateEvent() {
     date: "",
     type: "",
   });
+
+  console.log({ localStorage });
+
+  const onChangeInput = (e) => {
+    setInput({
+      ...input,
+      [e.target.id]: e.target.value,
+    });
+    console.log({ input });
+  };
+
+  const handleOnSubmit = async () => {
+    console.log(input);
+    let newEvent = await dispatch(
+      allAction.event.addEvent({
+        data: input,
+        access_token: localStorage.access_token,
+      })
+    );
+
+    console.log(newEvent.data.event);
+
+    history.push({
+      pathname: "/event-information",
+      data: newEvent.data.event,
+    });
+    setInput({
+      title: "",
+      date: "",
+      type: "",
+    });
+  };
 
   const styles = {
     form: {
@@ -40,25 +74,46 @@ export default function CreateEvent() {
   };
 
   return (
-    <Form style={styles.form}>
+    <div style={styles.form}>
       <h4 style={styles.title}>Create event</h4>
-      <Form.Group controlId="formBasicTitle">
+      <Form.Group controlId="title">
         <Form.Label>Title</Form.Label>
-        <Form.Control style={styles.input} type="title" />
+        <Form.Control
+          onChange={onChangeInput}
+          style={styles.input}
+          type="title"
+          value={input.title}
+        />
       </Form.Group>
 
-      <Form.Group style={styles.content} controlId="formBasicDate">
+      <Form.Group style={styles.content} controlId="date">
         <Form.Label>Date</Form.Label>
-        <Form.Control style={styles.input} type="Date" />
+        <Form.Control
+          onChange={onChangeInput}
+          style={styles.input}
+          type="Date"
+          value={input.date}
+        />
+        {console.log({ date: input.date })}
       </Form.Group>
 
-      <Form.Group style={styles.content} controlId="formBasicDescription">
+      <Form.Group style={styles.content} controlId="type">
         <Form.Label>Description</Form.Label>
-        <Form.Control style={styles.input} type="Description" />
+        <Form.Control
+          onChange={onChangeInput}
+          style={styles.input}
+          type="Description"
+          value={input.type}
+        />
       </Form.Group>
-      <Button style={styles.button} variant="primary" type="submit">
+      <Button
+        onClick={handleOnSubmit}
+        style={styles.button}
+        variant="primary"
+        type="submit"
+      >
         Create
       </Button>
-    </Form>
+    </div>
   );
 }

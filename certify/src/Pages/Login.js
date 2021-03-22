@@ -41,7 +41,6 @@ export default function Login() {
   const handleOnSubmit = () => {
     console.log(input);
     dispatch(allAction.organizer.getLogin(input));
-    history();
     setInput({
       email: "",
       password: "",
@@ -81,6 +80,7 @@ export default function Login() {
           onChange={handleOnChange}
           style={styles.input}
           type="email"
+          value={input.email}
         />
       </Form.Group>
 
@@ -90,6 +90,7 @@ export default function Login() {
           onChange={handleOnChange}
           style={styles.input}
           type="password"
+          value={input.password}
         />
       </Form.Group>
       <Button
