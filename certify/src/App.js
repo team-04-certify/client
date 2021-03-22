@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import { useHistory } from "react-router-dom";
 
+import Recipients from './Pages/Recipients'
 import {
   LandingPage,
   Register,
@@ -10,7 +11,7 @@ import {
   Events,
   CreateEvent,
   UpdateEvent,
-  EventInformation,
+  EventInformation
 } from "./Pages";
 import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
 
@@ -32,6 +33,9 @@ function App() {
       {showNavbarDashboard && <NavbarDashboard />}
       {showNavbarInformation && <NavbarInformation />}
       <Switch>
+        <Route path="/recipients">
+          <Recipients />
+        </Route>
         <Route path="/event-information">
           <EventInformation />
         </Route>
