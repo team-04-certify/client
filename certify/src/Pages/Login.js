@@ -9,7 +9,29 @@ export default function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const access_token = useSelector((state) => state.organi);
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const access_token = useSelector((state) => state.organizer.access_token);
+
+  const handleOnChange = (e) => {
+    console.log(input);
+    setInput({
+      ...input,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleOnSubmit = () => {
+    console.log(input);
+    dispatch(allAction.organizer.getLogin(input));
+    setInput({
+      email: "",
+      password: "",
+    });
+  };
 
   const styles = {
     form: {
@@ -36,22 +58,33 @@ export default function Login() {
   };
 
   return (
-    <Container className="justify-content-center">
-      <Form style={styles.form}>
-        <h4 style={styles.title}>Login</h4>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control style={styles.input} type="email" />
-        </Form.Group>
+    <div style={styles.form}>
+      <h4 style={styles.title}>Login</h4>
+      <Form.Group controlId="email">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          onChange={handleOnChange}
+          style={styles.input}
+          type="email"
+        />
+      </Form.Group>
 
-        <Form.Group style={styles.content} controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control style={styles.input} type="password" />
-        </Form.Group>
-        <Button style={styles.button} variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
-    </Container>
+      <Form.Group style={styles.content} controlId="password">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          onChange={handleOnChange}
+          style={styles.input}
+          type="password"
+        />
+      </Form.Group>
+      <Button
+        onClick={handleOnSubmit}
+        style={styles.button}
+        variant="primary"
+        type="submit"
+      >
+        Login
+      </Button>
+    </div>
   );
 }

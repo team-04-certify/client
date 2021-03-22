@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CreateEvent() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const errorMessage = useSelector((state) => state.event.errors);
+  const [error, setError] = useState([]);
+  const [input, setInput] = useState({
+    title: "",
+    date: "",
+    type: "",
+  });
+
   const styles = {
     form: {
       margin: 50,
