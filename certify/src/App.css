@@ -1,3 +1,212 @@
-.App {
+/* Global */
+.btn {
+  border-radius: 0 !important;
+}
+
+btn-primary {
+  background-color: #00509D !important;
+  color: #ffffff !important;
+}
+
+btn-secondary {
+  background-color: #ffffff !important;
+  color: #00509D !important;
+  border: 1px solid #00509D !important;
+}
+
+.full-width {
+  width: 100vw !important;
+}
+
+.full-height {
+  height: 100vh !important;
+}
+
+/* Global ends */
+
+/* Navbar home */
+#navbar-home {
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.logo {
+  margin-right: 200px;
+}
+
+.logo img {
+  justify-content: center;
+  width: 100px;
+}
+
+.nav-item a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: black;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+/* Navbar home */
+
+/* Landing page */
+.landing-page {
+  margin: 50px;
+  padding-left: 30px;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.landing-page .h1 {
+  padding-top: 50px;
+}
+
+.landing-page h1 {
+  font-weight: bold;
+}
+
+.landing-page img {
+  width: 400px;
+}
+
+/* Landing page ends */
+
+/* Register/Login */
+.form-cont {
+  margin: 20px 40px;
+  width: 400px;
+  padding: 60px 40px;
+  background-color: #A9D0F5;
+}
+
+.register,
+.login {
+  background-color: #F3F3F3;
+}
+
+/* Register/Login ends */
+
+/* Navbar dashboard */
+#navbar-dashboard {
+  background-color: #00509D;
+  color: #ffff;
+  padding-left: 80px;
   text-align: center;
+  height: 60px;
+}
+
+h5 {
+  text-align: center;
+}
+
+.button-logout {
+  margin-right: 80px;
+}
+
+.button-logout a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ffff;
+}
+
+/* Navbar dashboard ends */
+
+/* Dashboard */
+.dashboard-events {
+  margin: 50px;
+  margin-left: 60px;
+}
+
+.events {
+  background-color: #E5E5E5;
+  /* bisa dibalik sama warna background */
+  padding: 15px;
+}
+
+.events img {
+  width: 130px;
+}
+
+.dashboard-events .events .col p {
+  margin-top: 40px;
+}
+
+.dashboard-events .events .col button {
+  margin-top: 40px;
+}
+
+/* Dashboard ends */
+
+/* Navbar certificate*/
+#navbar-certificate {
+  background-color: #A9D0F5;
+  color: #00509D;
+  text-align: center;
+  padding-left: 80px;
+  }
+
+  #navbar-certificate a {
+    color: #00509D;
+    margin-left: 50px;
+  }
+
+  #navbar-certificate button {
+    margin-right: 80px;
+  }
+
+  /* Navbar certificate ends*/
+
+  /* Event information */
+  .container-eventInformation {
+    margin: 30px;
+    background-color: #E5E5E5;
+    /* bisa dibalik sama warna background */
+    padding: 50px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .container-eventInformation .one {
+    margin-top: 50px;
+  }
+
+  /* Event information ends */
+
+  /* Create event */
+  .create-event {
+    background-color: #A9D0F5;
+  }
+
+  /* Create event ends*/
+
+  /* Edit event */
+  .edit-event {
+    background-color: #A9D0F5;
+  }
+
+  /* Edit event ends */
+
+  /* Recipient */
+  .upload-cont {
+    width: 500px;
+    padding: 20px 30px;
+  }
+
+  .recipient {
+    padding: 40px 0;
+  }
+
+  .recipient-tab {
+    margin-top: 80px;
+}
+
+.action-btn a {
+  margin: 0 5px;
+  font-size: 20px;
 }
