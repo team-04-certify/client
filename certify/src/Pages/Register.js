@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -8,7 +8,7 @@ import allAction from "../Store/Actions";
 export default function Register() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const errorMsg = useSelector((state) => state.organizer.error);
+  const errorMsg = useSelector((state) => state.organizer.errors);
   // const loading = useSelector()
   console.log({ atas: errorMsg });
   const [error, setError] = useState([]);
@@ -17,6 +17,37 @@ export default function Register() {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    setError(errorMsg);
+  }, [errorMsg]);
+
+  const onChangeInput = (e) => {
+    setInput({
+      ...input,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleOnSubmit = async () => {
+    setError([]);
+    let temp = await dispatch(allAction.organizer.getRegister(input));
+    console.log({ temp });
+    console.log({ error });
+    if (error.length > 0) {
+      setError(errorMsg);
+      setTimeout(() => setError([]), 3000);
+      console.log("masuk error");
+    } else {
+      history.push("/login");
+      console.log("masuk login");
+    }
+    setInput({
+      name: "",
+      email: "",
+      password: "",
+    });
+  };
 
   const styles = {
     form: {
@@ -42,40 +73,24 @@ export default function Register() {
     },
   };
 
-  const onChangeInput = (e) => {
-    setInput({
-      ...input,
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  const handleOnSubmit = () => {
-    console.log(input);
-    dispatch(allAction.organizer.getRegister(input));
-    console.log({ errorMsg });
-    if (errorMsg) {
-      setError(errorMsg);
-    } else {
-      history.push("/login");
-    }
-    setInput({
-      name: "",
-      email: "",
-      password: "",
-    });
-  };
-
   return (
     <div style={styles.form}>
-      {console.log(error)}
       <h4 style={styles.title}>Register</h4>
-      {error && error.map((err) => <p style={{ color: "red" }}>{err}</p>)}
+      {error &&
+        error.map((el, i) => {
+          return (
+            <p style={{ color: "red" }} key={i}>
+              {el.message}
+            </p>
+          );
+        })}
       <Form.Group controlId="email">
         <Form.Label>Email address</Form.Label>
         <Form.Control
           onChange={onChangeInput}
           style={styles.input}
           type="email"
+          value={input.email}
         />
       </Form.Group>
 
@@ -85,6 +100,7 @@ export default function Register() {
           onChange={onChangeInput}
           style={styles.input}
           type="text"
+          value={input.name}
         />
       </Form.Group>
 
@@ -94,6 +110,7 @@ export default function Register() {
           onChange={onChangeInput}
           style={styles.input}
           type="password"
+          value={input.password}
         />
       </Form.Group>
       <Button

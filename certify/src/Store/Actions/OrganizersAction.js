@@ -35,10 +35,12 @@ const getRegister = (payload) => {
     })
       .then((user) => {
         dispatch(setRegister(user));
+        return true;
       })
       .catch((err) => {
         console.log({ err: err.response.data });
-        return dispatch(setError(err.response.data));
+        dispatch(setError(err.response.data));
+        return false;
       });
     dispatch(setLoading(false));
   };
@@ -52,13 +54,21 @@ const getLogin = (payload) => {
       url: `${baseUrl}/login`,
       data: payload,
     })
-      .then((user) => {
-        dispatch(setLoading(user));
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.access_token) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+        dispatch(setLoading(response));
       })
       .catch((err) => {
         dispatch(setError(err.response.data));
       });
   };
+};
+
+const logout = () => {
+  localStorage.removeItem("user");
 };
 
 export default {
@@ -70,4 +80,5 @@ export default {
   setLogin,
   getLogin,
   setAccessToken,
+  logout,
 };
