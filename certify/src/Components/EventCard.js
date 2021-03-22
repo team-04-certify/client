@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 
 import img from "../assets/sertifikat.png";
 
-export default function EventCard() {
+export default function EventCard({ title, date, type, event, participants }) {
   const styles = {
     card: {
       marginLeft: 50,
@@ -27,6 +28,16 @@ export default function EventCard() {
       paddingLeft: 70,
     },
   };
+  const history = useHistory();
+
+  let dateString = new Date(date).toLocaleDateString(undefined);
+
+  function onUpdate() {
+    history.push({
+      pathname: "/update-event",
+      data: event,
+    });
+  }
 
   return (
     <Card style={styles.card}>
@@ -36,16 +47,20 @@ export default function EventCard() {
             <img style={styles.image} src={img} alt="" />
           </Col>
           <Col style={styles.title}>
-            <h5>Event Name</h5>
+            <h5>{title}</h5>
           </Col>
           <Col style={styles.title}>
-            <h5>Mar 31, 2021</h5>
+            <h5>{dateString}</h5>
           </Col>
           <Col style={styles.title}>
-            <h5>Participants: 100</h5>
+            <h5>Participants: {participants}</h5>
           </Col>
           <Col style={styles.title}>
-            <Button style={styles.button} variant="outline-primary">
+            <Button
+              style={styles.button}
+              onClick={onUpdate}
+              variant="outline-primary"
+            >
               Edit
             </Button>
           </Col>
