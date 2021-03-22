@@ -43,14 +43,16 @@ const addEvent = (payload) => {
       dispatch(setLoading(true));
       let event = await axios({
         method: "POST",
-        url: `${baseUrl}/events/${payload.OrganizerId}`,
+        url: `${baseUrl}/events`,
         data: payload.data,
         headers: {
-          access_token: localStorage.setItem("access_token"),
+          access_token: payload.access_token,
         },
       });
+      console.log({ action: payload.access_token });
       console.log({ event });
       dispatch(getEvents(event.OrganizerId));
+      return event;
     } catch (err) {
       dispatch(setError(err));
     }

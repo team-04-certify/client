@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function NavbarDashboard() {
   const styles = {
@@ -16,6 +17,7 @@ export default function NavbarDashboard() {
       paddingLeft: 50,
       fontFamily: "sans-serif",
       color: "#ffff",
+      textDecoration: "none",
     },
     button: {
       marginRight: 30,
@@ -40,12 +42,16 @@ export default function NavbarDashboard() {
       <Navbar style={styles.body} className="justify-content-between">
         <Nav className="mr-auto">
           <Navbar.Brand href="#home">
-            <h5 style={styles.logo}>Dashboard</h5>
+            <Link to="/events">
+              <h5 style={styles.logo}>Dashboard</h5>
+            </Link>
           </Navbar.Brand>
         </Nav>
         <Nav style={styles.button}>
           <Nav.Link style={styles.title} href="#home">
-            Create Event
+            <Link to="/create-event" style={styles.title}>
+              Create Event
+            </Link>
           </Nav.Link>
           <Nav.Link style={styles.title} href="#features">
             Logout
