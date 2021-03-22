@@ -27,25 +27,25 @@ export default function Register() {
   };
 
   return (
-    <Form style={styles.form}>
-      <h4 style={styles.title}>Register</h4>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control style={styles.input} type="email" />
-      </Form.Group>
+    <div className="container d-flex justify-content-center">
+      <Form style={styles.form}>
+        <h4 style={styles.title}>Register</h4>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control style={styles.input} type="email" />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="formBasicName">
-        <Form.Label>Organizer Name</Form.Label>
-        <Form.Control style={styles.input} type="organizerName" />
-      </Form.Group>
+        <Form.Group style={styles.content} controlId="formBasicName">
+          <Form.Label>Organizer Name</Form.Label>
+          <Form.Control style={styles.input} type="organizerName" />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control style={styles.input} type="password" />
-      </Form.Group>
-      <Button style={styles.button} variant="primary" type="submit">
-        Register
-      </Button>
-    </Form>
+        <Form.Group style={styles.content} controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control style={styles.input} type="password" />
+        </Form.Group>
+        <Button className="mt-4" style={styles.button} variant="primary" type="submit">Register</Button>
+      </Form>
+    </div>
   );
 }
