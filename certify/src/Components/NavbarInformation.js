@@ -62,15 +62,17 @@ export default function NavbarInformation() {
           <Nav.Link style={styles.title} onClick={handleEdit}>
             Edit event
           </Nav.Link>
-          <Nav.Link style={styles.title} onClick={handleTemplate}>
-            Certificate design
-          </Nav.Link>
+          <Nav.Link style={styles.title}>Certificate design</Nav.Link>
           <Nav.Link style={styles.title} onClick={handleRecipient}>
             Recipients
           </Nav.Link>
         </Nav>
         <Nav style={styles.button}>
-          <Button style={styles.buttonContent1} variant="outline-primary">
+          <Button
+            style={styles.buttonContent1}
+            onClick={handleTemplate}
+            variant="outline-primary"
+          >
             Send certificate
           </Button>
         </Nav>

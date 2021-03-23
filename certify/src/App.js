@@ -14,6 +14,7 @@ import {
   UpdateEvent,
   EventInformation,
   Template,
+  Validation,
 } from "./Pages";
 import {
   NavbarHome,
@@ -38,45 +39,54 @@ function App() {
       {showNavbarDashboard && <NavbarDashboard />}
       {showNavbarInformation && <NavbarInformation />} */}
 
-      {page === "/register" || page === "/login" || page === "/" ? (
+      {/* {page === "/register" || page === "/login" || page === "/" ? (
         <NavbarHome />
       ) : (
-        <NavbarDashboard />
-      )}
+        page !== ""(<NavbarDashboard />)
+      )} */}
 
       <Switch>
         <Route path="/upload-template/:eventId">
+          <NavbarDashboard />
           <NavbarInformation />
           <Template />
         </Route>
         <Route path="/:eventId/recipients">
+          <NavbarDashboard />
           <NavbarInformation />
           <Recipients />
         </Route>
         <Route path="/event-information/:eventId">
+          <NavbarDashboard />
           <NavbarInformation />
           <EventInformation />
         </Route>
         <Route path="/update-event/:eventId">
+          <NavbarDashboard />
           <NavbarInformation />
           <UpdateEvent />
         </Route>
-        <Route path="/validate">
-          <ValidateCard />
+        <Route path="/certificate/:recipientId">
+          <NavbarHome />
+          <Validation />
         </Route>
         <Route path="/create-event">
+          <NavbarDashboard />
           <CreateEvent />
         </Route>
         <Route path="/register">
           <Register />
         </Route>
         <Route path="/login">
+          <NavbarHome />
           <Login />
         </Route>
         <Route path="/events">
+          <NavbarDashboard />
           <Events />
         </Route>
         <Route exact path="/">
+          <NavbarHome />
           <LandingPage />
         </Route>
       </Switch>

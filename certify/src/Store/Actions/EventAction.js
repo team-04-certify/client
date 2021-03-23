@@ -108,6 +108,8 @@ const deleteEvent = (payload) => {
           access_token: payload.access_token,
         },
       });
+
+      dispatch(getEvents(payload.access_token));
     } catch (err) {
       dispatch(setError(err));
     }

@@ -16,6 +16,8 @@ export default function Template() {
   const dispatch = useDispatch();
   const { eventId } = useParams();
 
+  const [templateNumber, setTemplateNumber] = useState(1);
+
   const getFile = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
@@ -42,9 +44,33 @@ export default function Template() {
     }
   };
 
+  function changeTemplate(number) {
+    setTemplateNumber(number);
+  }
+
+  function generateAndSendCertificate() {
+    dispatch(
+      allAction.recipient.sendCertificate({
+        eventId,
+        access_token: localStorage.access_token,
+        templateNumber,
+      })
+    );
+  }
+
   const styles = {
     image: {
-      width: 200,
+      width: 250,
+      height: 180,
+      cursor: "pointer",
+      margin: "10px",
+    },
+    selectedImage: {
+      width: 250,
+      height: 180,
+      cursor: "pointer",
+      margin: "10px",
+      border: "solid blue 3px",
     },
   };
 
@@ -54,9 +80,27 @@ export default function Template() {
         <div className="template-cont d-flex justify-content-center align-items-center card">
           <h4>Upload your template</h4>
           <div>
-            <img style={styles.image} src={img1} alt="" />
-            <img style={styles.image} src={img2} alt="" />
-            <img style={styles.image} src={img3} alt="" />
+            <img
+              style={templateNumber === 1 ? styles.selectedImage : styles.image}
+              src={img1}
+              alt=""
+              onClick={() => changeTemplate(1)}
+            />
+
+            <img
+              style={templateNumber === 2 ? styles.selectedImage : styles.image}
+              onClick={() => changeTemplate(2)}
+              src={img2}
+              alt=""
+            />
+            <img
+              style={templateNumber === 3 ? styles.selectedImage : styles.image}
+              src={img3}
+              alt=""
+              onClick={() => changeTemplate(3)}
+            />
+
+            <Button onClick={generateAndSendCertificate}>Send</Button>
           </div>
 
           <Form className="mt-5">
