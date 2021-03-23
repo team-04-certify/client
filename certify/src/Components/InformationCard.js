@@ -4,7 +4,7 @@ import img from "../assets/sertifikat.png";
 
 import { useLocation } from "react-router-dom";
 
-export default function InformationCard() {
+export default function InformationCard({ event }) {
   const styles = {
     card: {
       margin: 50,
@@ -26,10 +26,8 @@ export default function InformationCard() {
       paddingLeft: 30,
     },
   };
-  const location = useLocation();
-  console.log(location);
-  const { title, date, type } = location.data;
-  let dateString = new Date(date).toLocaleDateString("en-US");
+  console.log(event);
+  let dateString = new Date(event.date).toLocaleDateString("en-US");
 
   return (
     <Card style={styles.card}>
@@ -42,9 +40,9 @@ export default function InformationCard() {
             <h5>Recipients</h5>
           </Col>
           <Col style={styles.title}>
-            <h5>{title}</h5>
+            <h5>{event.title}</h5>
             <h5>{dateString}</h5>
-            <h5>{type}</h5>
+            <h5>{event.type}</h5>
             <h5>100</h5>
           </Col>
           <Col>

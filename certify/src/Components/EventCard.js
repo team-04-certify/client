@@ -33,10 +33,7 @@ export default function EventCard({ title, date, type, event, participants }) {
   let dateString = new Date(date).toLocaleDateString(undefined);
 
   function onUpdate() {
-    history.push({
-      pathname: "/update-event",
-      data: event,
-    });
+    history.push(`/update-event/${event.id}`);
   }
 
   return (
@@ -53,7 +50,7 @@ export default function EventCard({ title, date, type, event, participants }) {
             <h5>{dateString}</h5>
           </Col>
           <Col style={styles.title}>
-            <h5>Participants: {participants}</h5>
+            <h5>Participants: 100</h5>
           </Col>
           <Col style={styles.title}>
             <Button

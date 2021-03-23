@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { useLocation, useHistory, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useHistory, useParams } from "react-router-dom";
 import allActions from "../Store/Actions";
 
 export default function UpdateEvent() {
@@ -36,94 +36,132 @@ export default function UpdateEvent() {
       width: 100,
     },
   };
-  function dateString(date) {
-    return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
-      .map((el) => (el < 10 ? `0${el}` : `${el}`))
-      .join("-");
-  }
 
-  const history = useHistory();
-  const location = useLocation();
+  const { eventId } = useParams();
+  const event = useSelector((state) => state.event.event);
   const dispatch = useDispatch();
-  let generateDate = dateString(new Date(location.data.date));
+  const history = useHistory();
 
   const [input, setInput] = useState({
-    title: location.data.title,
-    date: generateDate,
-    type: location.data.type,
+    title: "",
+    date: "",
+    type: "",
   });
 
-  function cancelUpdate() {
-    history.push("/events");
+  function populateInput(title, date, type) {
+    function dateString(date) {
+      return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+        .map((el) => (el < 10 ? `0${el}` : `${el}`))
+        .join("-");
+    }
+
+    let generateDate = dateString(new Date(date));
+
+    setInput({
+      title: title,
+      date: generateDate,
+      type: type,
+    });
   }
 
-  const onChangeInput = (e) => {
-    setInput({
-      ...input,
-      [e.target.id]: e.target.value,
-    });
-  };
+  useEffect(() => {
+    dispatch(allActions.organizer.setPage(history.location.pathname));
 
-  function handleOnSubmit() {
     dispatch(
-      allActions.event.updateEvent({
-        data: input,
+      allActions.event.getEvent({
         access_token: localStorage.access_token,
-        id: location.data.id,
+        eventId,
       })
     );
+  }, []);
 
-    history.push("/events");
+  useEffect(() => {
+    if (event.event) {
+      populateInput(
+        event.event[0].title,
+        event.event[0].date,
+        event.event[0].type
+      );
+    }
+  }, [event]);
+
+  if (event.event) {
+    const { title, date, type, id } = event.event[0];
+
+    function cancelUpdate() {
+      history.push("/events");
+    }
+
+    const onChangeInput = (e) => {
+      setInput({
+        ...input,
+        [e.target.id]: e.target.value,
+      });
+    };
+
+    function handleOnSubmit() {
+      dispatch(
+        allActions.event.updateEvent({
+          data: input,
+          access_token: localStorage.access_token,
+          id: id,
+        })
+      );
+
+      history.push("/events");
+    }
+
+    return (
+      <div style={styles.form}>
+        <h4 style={styles.title}>Edit event</h4>
+        <Form.Group controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            style={styles.input}
+            type="title"
+            value={input.title}
+            onChange={onChangeInput}
+          />
+        </Form.Group>
+
+        <Form.Group style={styles.content} controlId="date">
+          <Form.Label>Date</Form.Label>
+          <Form.Control
+            style={styles.input}
+            type="Date"
+            value={input.date}
+            onChange={onChangeInput}
+          />
+        </Form.Group>
+
+        <Form.Group style={styles.content} controlId="type">
+          <Form.Label>Type</Form.Label>
+          <Form.Control
+            style={styles.input}
+            type="Description"
+            value={input.type}
+            onChange={onChangeInput}
+          />
+        </Form.Group>
+        <Button
+          style={styles.button1}
+          onClick={handleOnSubmit}
+          variant="primary"
+          type="submit"
+        >
+          Save
+        </Button>
+        <Button
+          style={styles.button2}
+          onClick={cancelUpdate}
+          variant="primary"
+          type="submit"
+        >
+          Cancel
+        </Button>
+      </div>
+    );
+  } else {
+    return <div>loading..</div>;
   }
-
-  return (
-    <div style={styles.form}>
-      <h4 style={styles.title}>Edit event</h4>
-      <Form.Group controlId="title">
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          style={styles.input}
-          type="title"
-          value={input.title}
-          onChange={onChangeInput}
-        />
-      </Form.Group>
-
-      <Form.Group style={styles.content} controlId="date">
-        <Form.Label>Date</Form.Label>
-        <Form.Control
-          style={styles.input}
-          type="Date"
-          value={input.date}
-          onChange={onChangeInput}
-        />
-      </Form.Group>
-
-      <Form.Group style={styles.content} controlId="type">
-        <Form.Label>Type</Form.Label>
-        <Form.Control
-          style={styles.input}
-          type="Description"
-          value={input.type}
-          onChange={onChangeInput}
-        />
-      </Form.Group>
-      <Button
-        style={styles.button1}
-        onClick={handleOnSubmit}
-        variant="primary"
-        type="submit"
-      >
-        Save
-      </Button>
-      <Button
-        style={styles.button2}
-        onClick={cancelUpdate}
-        variant="primary"
-        type="submit"
-      >
-        Cancel
-      </Button>
-    </div>
-  );
 }

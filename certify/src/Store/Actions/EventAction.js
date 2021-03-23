@@ -40,6 +40,24 @@ const getEvents = (access_token) => {
   };
 };
 
+const getEvent = (payload) => {
+  return async (dispatch) => {
+    try {
+      let event = await axios({
+        method: "GET",
+        url: `${baseUrl}/events/${payload.eventId}`,
+        headers: {
+          access_token: payload.access_token,
+        },
+      });
+      return dispatch(setEvent(event.data));
+    } catch (err) {
+      console.log(err.response);
+      dispatch(setError(err));
+    }
+  };
+};
+
 const addEvent = (payload) => {
   return async (dispatch) => {
     try {
@@ -105,6 +123,7 @@ export default {
   setEvents,
   setEvent,
   getEvents,
+  getEvent,
   addEvent,
   updateEvent,
   uploadTemplate

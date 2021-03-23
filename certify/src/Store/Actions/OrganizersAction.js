@@ -25,6 +25,10 @@ const setAccessToken = (payload) => {
   return { type: "SET_ACCESS_TOKEN", payload };
 };
 
+const setPage = (payload) => {
+  return { type: "SET_PAGE", payload };
+};
+
 const register = (payload) => {
   return (dispatch) => {
     dispatch(setLoading(true));
@@ -80,4 +84,5 @@ export default {
   getLogin,
   setAccessToken,
   logout,
+  setPage,
 };
