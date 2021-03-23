@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
-import allAction from "../Store/Actions";
+import allActions from "../Store/Actions";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -23,9 +23,14 @@ export default function Login() {
   }, [errorMsg]);
 
   useEffect(() => {
-    if (isLogin && history.location.pathname === "/login") {
+    dispatch(allActions.organizer.setPage(history.location.pathname));
+
+    if (
+      (isLogin && history.location.pathname === "/login") ||
+      localStorage.getItem("access_token")
+    ) {
       console.log("masuuk");
-      dispatch(allAction.organizer.setLogin(false));
+      dispatch(allActions.organizer.setLogin(false));
       history.push("/events");
     }
   }, [isLogin]);
@@ -40,7 +45,7 @@ export default function Login() {
 
   const handleOnSubmit = () => {
     console.log(input);
-    dispatch(allAction.organizer.getLogin(input));
+    dispatch(allActions.organizer.getLogin(input));
     setInput({
       email: "",
       password: "",

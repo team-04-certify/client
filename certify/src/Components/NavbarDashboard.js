@@ -1,6 +1,6 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Nav, Button } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 
 export default function NavbarDashboard() {
   const styles = {
@@ -36,6 +36,12 @@ export default function NavbarDashboard() {
       // color: "#ffff",
     },
   };
+  const history = useHistory();
+
+  function handleLogout() {
+    localStorage.removeItem("access_token");
+    history.push("/");
+  }
 
   return (
     <>
@@ -48,12 +54,12 @@ export default function NavbarDashboard() {
           </Navbar.Brand>
         </Nav>
         <Nav style={styles.button}>
-          <Nav.Link style={styles.title} href="#home">
+          <Nav.Link style={styles.title}>
             <Link to="/create-event" style={styles.title}>
               Create Event
             </Link>
           </Nav.Link>
-          <Nav.Link style={styles.title} href="#features">
+          <Nav.Link style={styles.title} onClick={handleLogout}>
             Logout
           </Nav.Link>
         </Nav>
