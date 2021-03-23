@@ -28,8 +28,7 @@ export default function reducer(state = initialState, action) {
     case "SET_LOGIN":
       return {
         ...state,
-        organizer: action.payload,
-        isLogin: true,
+        isLogin: action.payload,
       };
     case "SET_ACCESS_TOKEN":
       return {

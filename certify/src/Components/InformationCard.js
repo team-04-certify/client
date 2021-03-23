@@ -1,8 +1,9 @@
-import React from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import img from "../assets/sertifikat.png";
+import { useSelector, useDispatch } from "react-redux";
 
-import { useLocation } from "react-router-dom";
+import allActions from "../Store/Actions";
 
 export default function InformationCard({ event }) {
   const styles = {
@@ -26,8 +27,20 @@ export default function InformationCard({ event }) {
       paddingLeft: 30,
     },
   };
-  console.log(event);
+  // console.log(event);
   let dateString = new Date(event.date).toLocaleDateString("en-US");
+
+  const dispatch = useDispatch();
+  const recipients = useSelector((state) => state.recipient.recipients);
+
+  useEffect(() => {
+    dispatch(
+      allActions.recipient.getAllRecipients({
+        eventId: event.id,
+        access_token: localStorage.access_token,
+      })
+    );
+  }, []);
 
   return (
     <Card style={styles.card}>
@@ -43,10 +56,15 @@ export default function InformationCard({ event }) {
             <h5>{event.title}</h5>
             <h5>{dateString}</h5>
             <h5>{event.type}</h5>
-            <h5>100</h5>
+            <h5>{recipients.length}</h5>
+            {console.log({ recipients })}
           </Col>
           <Col>
-            <img style={styles.image} src={img} alt="" />
+            <img
+              style={styles.image}
+              src="https://i.pinimg.com/originals/5f/d4/4f/5fd44f56f142b6448819e7c4e0b0ad8c.jpg"
+              alt=""
+            />
           </Col>
         </Row>
       </Container>

@@ -13,9 +13,14 @@ import {
   CreateEvent,
   UpdateEvent,
   EventInformation,
-  Template
+  Template,
 } from "./Pages";
-import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
+import {
+  NavbarHome,
+  NavbarDashboard,
+  NavbarInformation,
+  ValidateCard,
+} from "./Components";
 
 function App() {
   const history = useHistory();
@@ -42,10 +47,10 @@ function App() {
       <Switch>
         <Route path="/upload-template/:eventId">
           <NavbarInformation />
-          <EventInformation />
           <Template />
         </Route>
         <Route path="/:eventId/recipients">
+          <NavbarInformation />
           <Recipients />
         </Route>
         <Route path="/event-information/:eventId">
@@ -55,6 +60,9 @@ function App() {
         <Route path="/update-event/:eventId">
           <NavbarInformation />
           <UpdateEvent />
+        </Route>
+        <Route path="/validate">
+          <ValidateCard />
         </Route>
         <Route path="/create-event">
           <CreateEvent />

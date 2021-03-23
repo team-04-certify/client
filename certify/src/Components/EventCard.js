@@ -1,8 +1,10 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import img from "../assets/sertifikat.png";
+import allActions from "../Store/Actions";
 
 export default function EventCard({ title, date, type, event, participants }) {
   const styles = {
@@ -21,19 +23,40 @@ export default function EventCard({ title, date, type, event, participants }) {
       borderRadius: 0,
       color: "#ffff",
       backgroundColor: "#00509D",
-      width: 70,
+      width: 80,
     },
     title: {
       paddingTop: 40,
-      paddingLeft: 70,
+      paddingLeft: 50,
     },
   };
   const history = useHistory();
+  const dispatch = useDispatch();
+  const recipients = useSelector((state) => state.recipient.recipients);
 
   let dateString = new Date(date).toLocaleDateString(undefined);
 
+  function onInfo() {
+    history.push(`/event-information/${event.id}`);
+    dispatch(
+      allActions.recipient.getAllRecipients({
+        eventId: event.id,
+        access_token: localStorage.access_token,
+      })
+    );
+  }
+
   function onUpdate() {
     history.push(`/update-event/${event.id}`);
+  }
+
+  function onDelete() {
+    dispatch(
+      allActions.event.deleteEvent({
+        id: event.id,
+        access_token: localStorage.access_token,
+      })
+    );
   }
 
   return (
@@ -50,7 +73,16 @@ export default function EventCard({ title, date, type, event, participants }) {
             <h5>{dateString}</h5>
           </Col>
           <Col style={styles.title}>
-            <h5>Participants: 100</h5>
+            <h5>Participants: {participants}</h5>
+          </Col>
+          <Col style={styles.title}>
+            <Button
+              style={styles.button}
+              onClick={onInfo}
+              variant="outline-primary"
+            >
+              Info
+            </Button>
           </Col>
           <Col style={styles.title}>
             <Button
@@ -59,6 +91,15 @@ export default function EventCard({ title, date, type, event, participants }) {
               variant="outline-primary"
             >
               Edit
+            </Button>
+          </Col>
+          <Col style={styles.title}>
+            <Button
+              style={styles.button}
+              onClick={onDelete}
+              variant="outline-primary"
+            >
+              Delete
             </Button>
           </Col>
         </Row>
