@@ -1,9 +1,11 @@
 import React from "react";
 
+import { ValidateCard } from "../Components";
+
 export default function Validation() {
   return (
     <div>
-      <h1>Validation</h1>
+      <ValidateCard />
     </div>
   );
 }
