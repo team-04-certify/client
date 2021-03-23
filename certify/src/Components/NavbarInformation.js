@@ -1,5 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function NavbarInformation() {
   const styles = {
@@ -29,22 +31,33 @@ export default function NavbarInformation() {
     },
   };
 
+  const history = useHistory();
+  const event = useSelector((state) => state.event.event);
+
+  const handleEdit = () => {
+    history.push(`/update-event/${event.event[0].id}`);
+  };
+
+  const handleRecipient = () => {
+    history.push(`/${event.event[0].id}/recipients`);
+  };
+
   return (
     <>
       <Navbar style={styles.body} className="justify-content-between">
         <Nav className="mr-auto">
-          <Navbar.Brand href="#home">
-            <h5 style={styles.logo}>Event 1 Name</h5>
+          <Navbar.Brand>
+            <h5 style={styles.logo}>{event.event && event.event[0].title}</h5>
           </Navbar.Brand>
         </Nav>
         <Nav className="mr-auto">
-          <Nav.Link style={styles.title} href="#home">
+          <Nav.Link style={styles.title} onClick={handleEdit}>
             Edit event
           </Nav.Link>
           <Nav.Link style={styles.title} href="#features">
             Certificate design
           </Nav.Link>
-          <Nav.Link style={styles.title} href="#pricing">
+          <Nav.Link style={styles.title} onClick={handleRecipient}>
             Recipients
           </Nav.Link>
         </Nav>

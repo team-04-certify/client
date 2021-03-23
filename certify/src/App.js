@@ -46,6 +46,7 @@ function App() {
           <Template />
         </Route>
         <Route path="/:eventId/recipients">
+          <NavbarInformation />
           <Recipients />
         </Route>
         <Route path="/event-information/:eventId">

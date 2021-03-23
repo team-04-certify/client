@@ -98,6 +98,17 @@ const updateEvent = (payload) => {
   };
 };
 
+const deleteEvent = (payload) => {
+  return async (dispatch) => {
+    try {
+      let temp = await axios({
+        method: "DELETE",
+        url: `${baseUrl}/events/${payload.id}`,
+        headers: {
+          access_token: payload.access_token,
+        },
+      });
+
 const uploadTemplate = (payload) => {
   return async (dispatch) => {
     try {
@@ -115,6 +126,7 @@ const uploadTemplate = (payload) => {
       dispatch(setError(err));
     }
   };
+};
 }
 
 export default {
@@ -126,5 +138,6 @@ export default {
   getEvent,
   addEvent,
   updateEvent,
+  deleteEvent,
   uploadTemplate
 };
