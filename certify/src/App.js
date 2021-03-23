@@ -19,14 +19,6 @@ import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
 function App() {
   const history = useHistory();
   const page = useSelector((state) => state.organizer.page);
-  // const showNavbarHome =
-  //   history.location.pathname === "/register" ||
-  //   history.location.pathname === "/login" ||
-  //   history.location.pathname === "/";
-  // const showNavbarDashboard = !showNavbarHome;
-  // const showNavbarInformation =
-  //   history.location.pathname === "/event-information" ||
-  //   history.location.pathname === "/update-event";
 
   useEffect(() => {
     //

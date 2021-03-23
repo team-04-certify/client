@@ -5,3 +5,4 @@ export { default as Events } from "./Events";
 export { default as CreateEvent } from "./CreateEvent";
 export { default as UpdateEvent } from "./UpdateEvent";
 export { default as EventInformation } from "./EventInformation";
+export { default as Recipients } from "./Recipients";
