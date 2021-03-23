@@ -1,5 +1,6 @@
 const initialState = {
   recipients: [],
+  recipient: {},
   loading: false,
   errors: [],
 };
@@ -20,6 +21,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         recipients: action.payload,
+      };
+
+    case "SET_RECIPIENT":
+      return {
+        ...state,
+        recipient: action.payload,
       };
     default:
       return state;

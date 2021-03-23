@@ -40,7 +40,11 @@ export default function InformationCard({ event }) {
         access_token: localStorage.access_token,
       })
     );
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    //
+  }, [recipients]);
 
   return (
     <Card style={styles.card}>

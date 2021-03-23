@@ -7,3 +7,4 @@ export { default as UpdateEvent } from "./UpdateEvent";
 export { default as EventInformation } from "./EventInformation";
 export { default as Recipients } from "./Recipients";
 export { default as Template } from "./Template";
+export { default as Validation } from "./Validation";

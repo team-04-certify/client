@@ -11,7 +11,11 @@ const setError = (payload) => {
 
 const setRecipients = (payload) => {
   return { type: "SET_RECIPIENTS", payload };
-}
+};
+
+const setRecipient = (payload) => {
+  return { type: "SET_RECIPIENT", payload };
+};
 
 const getAllRecipients = (payload) => {
   return async (dispatch) => {
@@ -33,6 +37,26 @@ const getAllRecipients = (payload) => {
   };
 };
 
+const getRecipient = (payload) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+      const recipient = await axios({
+        method: "GET",
+        url: `${baseUrl}/recipients/${payload.recipientId}`,
+        headers: {
+          access_token: payload.access_token,
+        },
+      });
+      dispatch(setRecipient(recipient.data));
+    } catch (err) {
+      console.log(err);
+      dispatch(setError(err));
+    }
+    dispatch(setLoading(false));
+  };
+};
+
 const addRecipients = (payload) => {
   return async (dispatch) => {
     try {
@@ -43,12 +67,14 @@ const addRecipients = (payload) => {
         data: payload.data,
         headers: {
           access_token: payload.access_token,
-        }
+        },
       });
-      dispatch(getAllRecipients({
-        access_token: payload.access_token,
-        eventId: payload.eventId
-      }));
+      dispatch(
+        getAllRecipients({
+          access_token: payload.access_token,
+          eventId: payload.eventId,
+        })
+      );
       return event;
     } catch (err) {
       dispatch(setError(err));
@@ -67,12 +93,14 @@ const editRecipients = (payload) => {
         data: payload.data,
         headers: {
           access_token: payload.access_token,
-        }
+        },
       });
-      dispatch(getAllRecipients({
-        access_token: payload.access_token,
-        eventId: payload.eventId
-      }));
+      dispatch(
+        getAllRecipients({
+          access_token: payload.access_token,
+          eventId: payload.eventId,
+        })
+      );
       return event;
     } catch (err) {
       dispatch(setError(err));
@@ -91,14 +119,38 @@ const deleteRecipients = (payload) => {
         data: payload.data,
         headers: {
           access_token: payload.access_token,
-        }
+        },
       });
-      dispatch(getAllRecipients({
-        access_token: payload.access_token,
-        eventId: payload.eventId
-      }));
+      dispatch(
+        getAllRecipients({
+          access_token: payload.access_token,
+          eventId: payload.eventId,
+        })
+      );
       return event;
     } catch (err) {
+      dispatch(setError(err));
+    }
+    dispatch(setLoading(false));
+  };
+};
+
+const sendCertificate = (payload) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true));
+
+      let send = await axios({
+        method: "GET",
+        url: `${baseUrl}/certificates/${payload.eventId}/${payload.templateNumber}`,
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      });
+
+      console.log(send);
+    } catch (err) {
+      console.log(err);
       dispatch(setError(err));
     }
     dispatch(setLoading(false));
@@ -111,5 +163,7 @@ export default {
   addRecipients,
   editRecipients,
   getAllRecipients,
-  deleteRecipients
-}
+  deleteRecipients,
+  sendCertificate,
+  getRecipient,
+};
