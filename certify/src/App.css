@@ -29,11 +29,16 @@ btn-secondary {
 /* Global ends */
 
 /* Navbar home */
-#navbar-home {
+.navbar-home {
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
   height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
 }
 
 .logo {
@@ -55,8 +60,9 @@ btn-secondary {
 
 /* Landing page */
 .landing-page {
-  margin: 50px;
+  margin-top: 50px;
   padding-left: 30px;
+  padding-top: 40px;
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
@@ -70,9 +76,10 @@ btn-secondary {
   font-weight: bold;
 }
 
-.landing-page img {
-  width: 400px;
-}
+/* .landing-page img {
+  width: 600px;
+  height: auto;
+} */
 
 /* Landing page ends */
 
@@ -212,3 +219,30 @@ h5 {
 .form-control-sm {
   width: 170px;
 }
+/* Recipient end */
+
+/* Template */
+.template-cont {
+  margin-top: 150px;
+  width: 100%;
+  padding: 80px 30px;
+}
+
+.recipient {
+  padding: 40px 0;
+}
+
+.recipient-tab {
+  margin-top: 50px;
+}
+
+.action-btn a {
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.form-control-sm {
+  width: 170px;
+}
+
+/* Template ends */

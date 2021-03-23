@@ -108,12 +108,26 @@ const deleteEvent = (payload) => {
           access_token: payload.access_token,
         },
       });
+
+const uploadTemplate = (payload) => {
+  return async (dispatch) => {
+    try {
+      await axios({
+        method: "POST",
+        url: `${baseUrl}/events/${payload.eventId}/upload`,
+        data: payload.data,
+        headers: {
+          access_token: payload.access_token,
+        }
+      });
+
       dispatch(getEvents(payload.access_token));
     } catch (err) {
       dispatch(setError(err));
     }
   };
 };
+}
 
 export default {
   setLoading,
@@ -125,4 +139,5 @@ export default {
   addEvent,
   updateEvent,
   deleteEvent,
+  uploadTemplate
 };

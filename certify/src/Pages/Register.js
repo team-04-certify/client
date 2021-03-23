@@ -76,53 +76,56 @@ export default function Register() {
   };
 
   return (
-    <div style={styles.form}>
-      <h4 style={styles.title}>Register</h4>
-      {error &&
-        error.map((el, i) => {
-          return (
-            <p style={{ color: "red" }} key={i}>
-              {el.message}
-            </p>
-          );
-        })}
-      <Form.Group controlId="email">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          onChange={onChangeInput}
-          style={styles.input}
-          type="email"
-          value={input.email}
-        />
-      </Form.Group>
+    <div className="d-flex justify-content-center align-items-center" style={{padding:"60px"}}>
+      <div style={styles.form}>
+        <h4 style={styles.title}>Register</h4>
+        {error &&
+          error.map((el, i) => {
+            return (
+              <p style={{ color: "red" }} key={i}>
+                {el.message}
+              </p>
+            );
+          })}
+        <Form.Group controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            onChange={onChangeInput}
+            style={styles.input}
+            type="email"
+            value={input.email}
+          />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="name">
-        <Form.Label>Organizer Name</Form.Label>
-        <Form.Control
-          onChange={onChangeInput}
-          style={styles.input}
-          type="text"
-          value={input.name}
-        />
-      </Form.Group>
+        <Form.Group style={styles.content} controlId="name">
+          <Form.Label>Organizer Name</Form.Label>
+          <Form.Control
+            onChange={onChangeInput}
+            style={styles.input}
+            type="text"
+            value={input.name}
+          />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          onChange={onChangeInput}
-          style={styles.input}
-          type="password"
-          value={input.password}
-        />
-      </Form.Group>
-      <Button
-        onClick={handleOnSubmit}
-        style={styles.button}
-        variant="primary"
-        type="submit"
-      >
-        Register
-      </Button>
+        <Form.Group style={styles.content} controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            onChange={onChangeInput}
+            style={styles.input}
+            type="password"
+            value={input.password}
+          />
+        </Form.Group>
+        <Button
+          onClick={handleOnSubmit}
+          style={styles.button}
+          className="mt-3"
+          variant="primary"
+          type="submit"
+        >
+          Register
+        </Button>
+      </div>
     </div>
   );
 }
