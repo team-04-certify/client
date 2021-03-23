@@ -42,11 +42,19 @@ export default function NavbarInformation() {
     history.push(`/${event.event[0].id}/recipients`);
   };
 
+  const handleTemplate = () => {
+    history.push(`/upload-template/${event.event[0].id}`);
+  };
+
+  const handleInformation = () => {
+    history.push(`/event-information/${event.event[0].id}`);
+  };
+
   return (
     <>
       <Navbar style={styles.body} className="justify-content-between">
         <Nav className="mr-auto">
-          <Navbar.Brand>
+          <Navbar.Brand onClick={handleInformation}>
             <h5 style={styles.logo}>{event.event && event.event[0].title}</h5>
           </Navbar.Brand>
         </Nav>
@@ -54,7 +62,7 @@ export default function NavbarInformation() {
           <Nav.Link style={styles.title} onClick={handleEdit}>
             Edit event
           </Nav.Link>
-          <Nav.Link style={styles.title} href="#features">
+          <Nav.Link style={styles.title} onClick={handleTemplate}>
             Certificate design
           </Nav.Link>
           <Nav.Link style={styles.title} onClick={handleRecipient}>

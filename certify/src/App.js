@@ -15,7 +15,12 @@ import {
   EventInformation,
   Template,
 } from "./Pages";
-import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
+import {
+  NavbarHome,
+  NavbarDashboard,
+  NavbarInformation,
+  ValidateCard,
+} from "./Components";
 
 function App() {
   const history = useHistory();
@@ -55,6 +60,9 @@ function App() {
         <Route path="/update-event/:eventId">
           <NavbarInformation />
           <UpdateEvent />
+        </Route>
+        <Route path="/validate">
+          <ValidateCard />
         </Route>
         <Route path="/create-event">
           <CreateEvent />

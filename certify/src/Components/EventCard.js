@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import img from "../assets/sertifikat.png";
 import allActions from "../Store/Actions";
@@ -32,11 +32,18 @@ export default function EventCard({ title, date, type, event, participants }) {
   };
   const history = useHistory();
   const dispatch = useDispatch();
+  const recipients = useSelector((state) => state.recipient.recipients);
 
   let dateString = new Date(date).toLocaleDateString(undefined);
 
   function onInfo() {
     history.push(`/event-information/${event.id}`);
+    dispatch(
+      allActions.recipient.getAllRecipients({
+        eventId: event.id,
+        access_token: localStorage.access_token,
+      })
+    );
   }
 
   function onUpdate() {
@@ -66,7 +73,7 @@ export default function EventCard({ title, date, type, event, participants }) {
             <h5>{dateString}</h5>
           </Col>
           <Col style={styles.title}>
-            <h5>Participants: 100</h5>
+            <h5>Participants: {participants}</h5>
           </Col>
           <Col style={styles.title}>
             <Button

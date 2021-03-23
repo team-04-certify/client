@@ -20,6 +20,8 @@ export default function Events() {
     }
   }, []);
 
+  console.log({ events });
+
   if (!loading) {
     return (
       <div>
@@ -30,7 +32,7 @@ export default function Events() {
               <EventCard
                 key={event.id}
                 event={event}
-                participants={events.Events.length}
+                participants={event.Recipients.length}
                 title={event.title}
                 date={event.date}
                 type={event.type}
