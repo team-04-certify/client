@@ -148,6 +148,7 @@ export default function UpdateEvent() {
           onClick={handleOnSubmit}
           variant="primary"
           type="submit"
+          className="mt-3"
         >
           Save
         </Button>
@@ -156,6 +157,7 @@ export default function UpdateEvent() {
           onClick={cancelUpdate}
           variant="primary"
           type="submit"
+          className="mt-3"
         >
           Cancel
         </Button>

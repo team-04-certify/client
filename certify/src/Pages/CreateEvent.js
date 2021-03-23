@@ -105,6 +105,7 @@ export default function CreateEvent() {
         style={styles.button}
         variant="primary"
         type="submit"
+        className="mt-3"
       >
         Create
       </Button>
