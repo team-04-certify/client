@@ -32,9 +32,9 @@ export default function LandingPage() {
   useEffect(() => {
     dispatch(allActions.organizer.setPage(history.location.pathname));
 
-    if (localStorage.getItem("access_token")) {
-      history.push("/events");
-    }
+    // if (localStorage.getItem("access_token")) {
+    //   history.push("/events");
+    // }
   }, []);
 
   return (

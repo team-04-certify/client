@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 import allActions from "../Store/Actions";
 
@@ -25,10 +25,7 @@ export default function Login() {
   useEffect(() => {
     dispatch(allActions.organizer.setPage(history.location.pathname));
 
-    if (
-      (isLogin && history.location.pathname === "/login") ||
-      localStorage.getItem("access_token")
-    ) {
+    if (isLogin || localStorage.getItem("access_token")) {
       console.log("masuuk");
       dispatch(allActions.organizer.setLogin(false));
       history.push("/events");

@@ -1,8 +1,6 @@
 import React from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import img from "../assets/sertifikat.png";
-
-import { useLocation } from "react-router-dom";
 
 export default function InformationCard({ event }) {
   const styles = {
@@ -26,7 +24,7 @@ export default function InformationCard({ event }) {
       paddingLeft: 30,
     },
   };
-  console.log(event);
+  // console.log(event);
   let dateString = new Date(event.date).toLocaleDateString("en-US");
 
   return (

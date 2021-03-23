@@ -61,7 +61,7 @@ const getLogin = (payload) => {
         if (response.data.access_token) {
           localStorage.setItem("access_token", response.data.access_token);
         }
-        dispatch(setLogin(response.data));
+        dispatch(setLogin(true));
       })
       .catch((err) => {
         dispatch(setError(err.response.data));

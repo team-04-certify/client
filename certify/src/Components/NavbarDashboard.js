@@ -1,8 +1,13 @@
 import React from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import allActions from "../Store/Actions";
 
 export default function NavbarDashboard() {
+  const dispatch = useDispatch();
+
   const styles = {
     body: {
       backgroundColor: "#00509D",
@@ -41,6 +46,7 @@ export default function NavbarDashboard() {
   function handleLogout() {
     localStorage.removeItem("access_token");
     history.push("/");
+    dispatch(allActions.organizer.setLogin(false));
   }
 
   return (
@@ -59,8 +65,10 @@ export default function NavbarDashboard() {
               Create Event
             </Link>
           </Nav.Link>
-          <Nav.Link style={styles.title} onClick={handleLogout}>
-            Logout
+          <Nav.Link style={styles.title}>
+            <Link style={styles.title} onClick={handleLogout}>
+              Logout
+            </Link>
           </Nav.Link>
         </Nav>
       </Navbar>

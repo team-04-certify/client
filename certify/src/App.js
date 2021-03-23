@@ -40,6 +40,7 @@ function App() {
 
       <Switch>
         <Route path="/:eventId/recipients">
+          <NavbarInformation />
           <Recipients />
         </Route>
         <Route path="/event-information/:eventId">

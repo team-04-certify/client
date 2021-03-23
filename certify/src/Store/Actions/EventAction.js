@@ -98,6 +98,23 @@ const updateEvent = (payload) => {
   };
 };
 
+const deleteEvent = (payload) => {
+  return async (dispatch) => {
+    try {
+      let temp = await axios({
+        method: "DELETE",
+        url: `${baseUrl}/events/${payload.id}`,
+        headers: {
+          access_token: payload.access_token,
+        },
+      });
+      dispatch(getEvents(payload.access_token));
+    } catch (err) {
+      dispatch(setError(err));
+    }
+  };
+};
+
 export default {
   setLoading,
   setError,
@@ -107,4 +124,5 @@ export default {
   getEvent,
   addEvent,
   updateEvent,
+  deleteEvent,
 };
