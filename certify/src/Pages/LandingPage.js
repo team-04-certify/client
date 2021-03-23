@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import allActions from "../Store/Actions";
 
 import img from "../assets/landing-page.png";
 
@@ -23,6 +26,16 @@ export default function LandingPage() {
       marginTop: 130,
     },
   };
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(() => {
+    dispatch(allActions.organizer.setPage(history.location.pathname));
+
+    if (localStorage.getItem("access_token")) {
+      history.push("/events");
+    }
+  }, []);
 
   return (
     <Container>

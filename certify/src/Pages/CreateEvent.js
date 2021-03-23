@@ -35,12 +35,7 @@ export default function CreateEvent() {
       })
     );
 
-    console.log(newEvent.data.event);
-
-    history.push({
-      pathname: "/event-information",
-      data: newEvent.data.event,
-    });
+    history.push(`/event-information/${newEvent.data.event.id}`);
     setInput({
       title: "",
       date: "",

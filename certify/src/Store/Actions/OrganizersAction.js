@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:4000";
 
 const setLoading = (payload) => {
   return { type: "SET_LOADING", payload };
@@ -23,6 +23,10 @@ const setLogin = (payload) => {
 
 const setAccessToken = (payload) => {
   return { type: "SET_ACCESS_TOKEN", payload };
+};
+
+const setPage = (payload) => {
+  return { type: "SET_PAGE", payload };
 };
 
 const register = (payload) => {
@@ -80,4 +84,5 @@ export default {
   getLogin,
   setAccessToken,
   logout,
+  setPage,
 };

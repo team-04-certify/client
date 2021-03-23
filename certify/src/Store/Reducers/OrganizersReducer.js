@@ -5,6 +5,7 @@ const initialState = {
   access_token: null,
   successRegister: false,
   isLogin: false,
+  page: "",
 };
 
 export default function reducer(state = initialState, action) {
@@ -34,6 +35,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         access_token: action.payload,
+      };
+    case "SET_PAGE":
+      return {
+        ...state,
+        page: action.payload,
       };
 
     default:
