@@ -13,7 +13,7 @@ import {
   CreateEvent,
   UpdateEvent,
   EventInformation,
-  Template
+  Template,
 } from "./Pages";
 import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
 
@@ -42,7 +42,6 @@ function App() {
       <Switch>
         <Route path="/upload-template/:eventId">
           <NavbarInformation />
-          <EventInformation />
           <Template />
         </Route>
         <Route path="/:eventId/recipients">
