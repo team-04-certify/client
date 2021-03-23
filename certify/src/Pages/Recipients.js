@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import axios from 'axios'
-import Papa from 'papaparse'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom"
+import Papa from 'papaparse';
+
+import allAction from "../Store/Actions";
 
 import { Form, Button, Container, input } from "react-bootstrap";
 import RecipientRow from "../Components/RecipientRow"
@@ -8,6 +11,23 @@ import RecipientRow from "../Components/RecipientRow"
 export default function Recipients() {
   const [showAdd, setShowAdd] = useState(false)
   const [input, setInput] = useState(null)
+
+  const [name, setName] = useState(null)
+  const [role, setRole] = useState(null)
+  const [email, setEmail] = useState(null)
+  const [certificateNumber, setCertificateNumber] = useState(null)
+  
+  const { eventId } = useParams()
+  const dispatch = useDispatch()
+  const recipients = useSelector((state) => state.recipient.recipients);
+
+  useEffect(() => {
+    dispatch(allAction.recipient.getAllRecipients({
+      access_token: localStorage.access_token,
+      eventId
+    }))
+  }, [])
+
 
   const clickShowAdd = (e) => {
     e.preventDefault()
@@ -24,21 +44,45 @@ export default function Recipients() {
       header: true,
       complete: function(results, _) {
         setInput(results.data)
-        console.log(results.data)
       }
     })
   }
 
-  const uploadFile = (e) => {
-    e.preventDefault()
-    axios({
-      // url: `${baseUrl}/events`,
-      method: 'POST',
-      headers: {
-        access_token: localStorage.getItem('access_token')
-      },
-      data: input
-    })
+  const uploadFile = async (e) => {
+    try {
+      e.preventDefault()
+      await dispatch(
+        allAction.recipient.addRecipients({
+          data: input,
+          access_token: localStorage.access_token,
+          eventId
+        })
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const addRecipient = async (e) => {
+    try {
+      e.preventDefault()
+      const input = [{
+        name,
+        role,
+        email,
+        certificateNumber
+      }]
+      await dispatch(
+        allAction.recipient.addRecipients({
+          data: input,
+          access_token: localStorage.access_token,
+          eventId
+        })
+      )
+      setShowAdd(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -46,7 +90,7 @@ export default function Recipients() {
     <div className="container">
       <div className="upload-cont card">
         <Form action="">
-            <input type="file" onChange={(e) => getFile(e)} accept=".csv" />
+          <input type="file" onChange={(e) => getFile(e)} accept=".csv" />
           <button onClick={(e) => uploadFile(e)} className="btn btn-primary">Upload file</button>
         </Form>
       </div>
@@ -71,25 +115,27 @@ export default function Recipients() {
             </tr>
           </thead>
           <tbody>
-            <RecipientRow />
-            <RecipientRow />
-            <RecipientRow />
-            {
+          {
               showAdd?
               <tr>
-                <td><input type="text" className="form-control form-control-sm" placeholder="Name" /></td>
-                <td><input type="text" className="form-control form-control-sm" placeholder="Role" /></td>
-                <td><input type="email" className="form-control form-control-sm" placeholder="mail@mail.com" /></td>
-                <td><input type="text" className="form-control form-control-sm" placeholder="Cert. no." /></td>
+                <td><input onChange={(e) => setName(e.target.value)} type="text" className="form-control form-control-sm" placeholder="Name" /></td>
+                <td><input onChange={(e) => setRole(e.target.value)} type="text" className="form-control form-control-sm" placeholder="Role" /></td>
+                <td><input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control form-control-sm" placeholder="mail@mail.com" /></td>
+                <td><input onChange={(e) => setCertificateNumber(e.target.value)} type="text" className="form-control form-control-sm" placeholder="Cert. no." /></td>
                 <td></td>
                 <td>
                   <div className="action-btn">
-                    <a href="#"><i style={{color: '#1265D7'}} className="bi bi-check-circle-fill"></i></a>
+                    <a onClick={(e) => addRecipient(e)}><i style={{color: '#1265D7'}} className="bi bi-check-circle-fill"></i></a>
                     <a onClick={(e) => clickCloseAdd(e)}><i style={{color: 'red'}}  className="bi bi-x-circle-fill"></i></a>
                   </div>
                 </td>
               </tr>:
               null
+            }
+            {
+              recipients.map((recipient) => {
+                return <RecipientRow eventId={eventId} recipient={recipient} key={recipient.id} />
+              })
             }
           </tbody>
         </table>

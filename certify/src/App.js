@@ -25,6 +25,7 @@ function App() {
   const showNavbarDashboard = !showNavbarHome;
   const showNavbarInformation =
     history.location.pathname === "/event-information" ||
+    history.location.pathname === "/recipients" ||
     history.location.pathname === "/update-event";
 
   return (
@@ -33,13 +34,13 @@ function App() {
       {showNavbarDashboard && <NavbarDashboard />}
       {showNavbarInformation && <NavbarInformation />}
       <Switch>
-        <Route path="/recipients">
+        <Route path="/:eventId/recipients">
           <Recipients />
         </Route>
-        <Route path="/event-information">
+        <Route path="/event-information/:eventId">
           <EventInformation />
         </Route>
-        <Route path="/update-event">
+        <Route path="/update-event/:eventId">
           <UpdateEvent />
         </Route>
         <Route path="/create-event">

@@ -35,7 +35,7 @@ export default function CreateEvent() {
       })
     );
 
-    console.log(newEvent.data.event);
+    console.log(newEvent, '<<<');
 
     history.push({
       pathname: "/event-information",
