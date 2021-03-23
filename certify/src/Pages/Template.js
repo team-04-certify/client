@@ -24,12 +24,12 @@ export default function Template() {
       e.preventDefault()
       console.log(input)
 
-      const formdata = new FormData()
-      formdata.append('file', input)
-
+      const dataInput = new FormData()
+      dataInput.append('file', input)
+      console.log(dataInput.getAll('file'), input, '====')
       await dispatch(
         allAction.event.uploadTemplate({
-          data: formdata,
+          data: dataInput,
           access_token: localStorage.access_token,
           eventId
         })

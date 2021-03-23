@@ -20,8 +20,6 @@ const setEvent = (payload) => {
 const getEvents = (access_token) => {
   return async (dispatch) => {
     try {
-      console.log("masokkk");
-      // console.log(events);
       dispatch(setLoading(true));
       let events = await axios({
         method: "GET",
@@ -99,14 +97,16 @@ const updateEvent = (payload) => {
 };
 
 const uploadTemplate = (payload) => {
+  console.log(payload, '======payload')
   return async (dispatch) => {
     try {
       await axios({
         method: "POST",
-        url: `${baseUrl}/events/${payload.eventId}/upload`,
+        url: `${baseUrl}/upload/banner`,
         data: payload.data,
         headers: {
           access_token: payload.access_token,
+          'content-type': 'multipart/form-data' 
         }
       });
 
