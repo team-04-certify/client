@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import { useHistory } from "react-router-dom";
 
-import Recipients from './Pages/Recipients'
+import Recipients from "./Pages/Recipients";
 import {
   LandingPage,
   Register,
@@ -11,7 +11,7 @@ import {
   Events,
   CreateEvent,
   UpdateEvent,
-  EventInformation
+  EventInformation,
 } from "./Pages";
 import { NavbarHome, NavbarDashboard, NavbarInformation } from "./Components";
 
