@@ -26,10 +26,8 @@ export default function Template() {
     try {
       e.preventDefault();
       console.log(input);
-
       const formdata = new FormData();
       formdata.append("file", input);
-
       await dispatch(
         allAction.event.uploadTemplate({
           data: formdata,
