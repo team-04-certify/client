@@ -212,3 +212,30 @@ h5 {
 .form-control-sm {
   width: 170px;
 }
+/* Recipient end */
+
+/* Template */
+.template-cont {
+  margin-top: 150px;
+  width: 100%;
+  padding: 80px 30px;
+}
+
+.recipient {
+  padding: 40px 0;
+}
+
+.recipient-tab {
+  margin-top: 50px;
+}
+
+.action-btn a {
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.form-control-sm {
+  width: 170px;
+}
+
+/* Template ends */
