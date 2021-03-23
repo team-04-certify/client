@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import allActions from "../Store/Actions";
 
-import img from "../assets/landing-page.png";
+import img from "../assets/landing-page.webp";
 
 export default function LandingPage() {
   const styles = {
@@ -38,7 +38,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <Container>
+    <Container className="landing-page">
       <Row>
         <Col style={styles.title} sm={6}>
           <h1>No more worry</h1>

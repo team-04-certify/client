@@ -38,7 +38,7 @@ export default function NavbarHome() {
 
   return (
     <>
-      <Navbar className="justify-content-between">
+      <Navbar className="navbar-home justify-content-between">
         <Nav style={styles.logo} className="mr-auto">
           <Navbar.Brand href="#home">
             <Link to="/">

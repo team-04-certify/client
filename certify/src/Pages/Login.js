@@ -77,35 +77,38 @@ export default function Login() {
   };
 
   return (
-    <div style={styles.form}>
-      <h4 style={styles.title}>Login</h4>
-      <Form.Group controlId="email">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          onChange={handleOnChange}
-          style={styles.input}
-          type="email"
-          value={input.email}
-        />
-      </Form.Group>
+    <div className="d-flex justify-content-center align-items-center" style={{padding:"60px"}}>
+      <div style={styles.form}>
+        <h4 style={styles.title}>Login</h4>
+        <Form.Group controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            onChange={handleOnChange}
+            style={styles.input}
+            type="email"
+            value={input.email}
+          />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          onChange={handleOnChange}
-          style={styles.input}
-          type="password"
-          value={input.password}
-        />
-      </Form.Group>
-      <Button
-        onClick={handleOnSubmit}
-        style={styles.button}
-        variant="primary"
-        type="submit"
-      >
-        Login
-      </Button>
+        <Form.Group style={styles.content} controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            onChange={handleOnChange}
+            style={styles.input}
+            type="password"
+            value={input.password}
+          />
+        </Form.Group>
+        <Button
+          onClick={handleOnSubmit}
+          style={styles.button}
+          className="mt-3"
+          variant="primary"
+          type="submit"
+        >
+          Login
+        </Button>
+      </div>
     </div>
   );
 }
