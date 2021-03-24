@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import img from "../assets/logo.svg";
 
@@ -36,6 +36,9 @@ export default function NavbarHome() {
     },
   };
 
+  const location = useLocation();
+  const path = location.pathname
+
   return (
     <>
       <Navbar className="navbar-home justify-content-between">
@@ -64,16 +67,24 @@ export default function NavbarHome() {
           </Nav.Link>
         </Nav>
         <Nav style={styles.button}>
-          <Link style={styles.buttonContent1} to="/login">
-            <Button style={styles.buttonContent1} variant="outline-primary">
-              Login
-            </Button>
-          </Link>
-          <Link style={styles.buttonTitle} to="/register">
-            <Button style={styles.buttonContent2} variant="outline-primary">
-              Register
-            </Button>
-          </Link>
+        {
+            path === '/register' || path === '/'?
+            <Link style={styles.buttonContent1} to="/login">
+              <Button style={styles.buttonContent1} variant="outline-primary">
+                Login
+              </Button>
+            </Link>:
+            null
+          }
+          {
+            path === '/login' || path === '/'?
+            <Link style={styles.buttonTitle} to="/register">
+              <Button style={styles.buttonContent2} variant="outline-primary">
+                Register
+              </Button>
+            </Link>:
+            null
+          }
         </Nav>
       </Navbar>
     </>

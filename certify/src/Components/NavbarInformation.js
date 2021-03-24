@@ -23,7 +23,6 @@ export default function NavbarInformation() {
       marginRight: 60,
     },
     buttonContent1: {
-      marginLeft: 30,
       borderRadius: 0,
       borderColor: "#00509D",
       color: "#ffff",
