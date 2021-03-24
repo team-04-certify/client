@@ -115,20 +115,37 @@ const deleteEvent = (payload) => {
 };
 
 const uploadTemplate = (payload) => {
-  console.log(payload, '======payload')
   return async (dispatch) => {
     try {
       await axios({
         method: "POST",
-        url: `${baseUrl}/upload/banner`,
+        url: `${baseUrl}/upload/template/${payload.eventId}`,
         data: payload.data,
         headers: {
           access_token: payload.access_token,
           'content-type': 'multipart/form-data' 
         }
       });
+      dispatch(getEvent(payload));
+    } catch (err) {
+      dispatch(setError(err));
+    }
+  };
+};
 
-      dispatch(getEvents(payload.access_token));
+const uploadBanner = (payload) => {
+  return async (dispatch) => {
+    try {
+      await axios({
+        method: "POST",
+        url: `${baseUrl}/upload/banner/${payload.eventId}`,
+        data: payload.data,
+        headers: {
+          access_token: payload.access_token,
+          'content-type': 'multipart/form-data' 
+        }
+      });
+      dispatch(getEvent(payload));
     } catch (err) {
       dispatch(setError(err));
     }
@@ -146,4 +163,5 @@ export default {
   updateEvent,
   deleteEvent,
   uploadTemplate,
+  uploadBanner
 };

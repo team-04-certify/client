@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import img from "../assets/sertifikat.png";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import allActions from "../Store/Actions";
 
 export default function InformationCard({ event }) {
+  const [input, setInput] = useState(null);
+  console.log(event, '===event')
+
   const styles = {
     card: {
       margin: 50,
@@ -45,15 +48,55 @@ export default function InformationCard({ event }) {
     //
   }, [recipients]);
 
+  const getFile = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    setInput(file);
+  };
+
+  const uploadFile = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(input);
+      const formdata = new FormData();
+      formdata.append("file", input);
+      console.log(formdata, '===formdata')
+      await dispatch(
+        allActions.event.uploadBanner({
+          data: formdata,
+          access_token: localStorage.access_token,
+          eventId: event.id
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Card className="info-card">
-      <div>
-        <img
-          style={styles.image}
-          src="https://i.pinimg.com/originals/5f/d4/4f/5fd44f56f142b6448819e7c4e0b0ad8c.jpg"
-          alt=""
-        />
-      </div>
+      {
+        !event.banner?
+        <div className="upload-cont card">
+          <form action="">
+            <input
+              type="file"
+              onChange={(e) => getFile(e)}
+              accept=".png,.jpg,.jpeg"
+            />
+            <button onClick={(e) => uploadFile(e)} className="btn btn-primary">
+              Upload file
+            </button>
+          </form>
+        </div>:
+        <div className="banner-img">
+          <img
+            style={styles.image}
+            src={event.banner}
+            alt=""
+          />
+        </div>
+      }
       <div className="card-desc">
         <div className="card-col">
           <h5>Title</h5>

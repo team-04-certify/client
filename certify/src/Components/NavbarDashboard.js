@@ -60,16 +60,12 @@ export default function NavbarDashboard() {
           </Navbar.Brand>
         </Nav>
         <Nav style={styles.button}>
-          <Nav.Link style={styles.title}>
             <Link to="/create-event" style={styles.title}>
               Create Event
             </Link>
-          </Nav.Link>
-          <Nav.Link style={styles.title}>
             <Link style={styles.title} onClick={handleLogout}>
               Logout
             </Link>
-          </Nav.Link>
         </Nav>
       </Navbar>
     </>
