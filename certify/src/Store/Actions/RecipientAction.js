@@ -139,7 +139,7 @@ const sendCertificate = (payload) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-
+      console.log("1");
       let send = await axios({
         method: "GET",
         url: `${baseUrl}/certificates/${payload.eventId}/${payload.templateNumber}`,
@@ -148,12 +148,12 @@ const sendCertificate = (payload) => {
         },
       });
 
-      console.log(send);
+      dispatch(setLoading(false));
+      return true;
     } catch (err) {
       console.log(err);
       dispatch(setError(err));
     }
-    dispatch(setLoading(false));
   };
 };
 

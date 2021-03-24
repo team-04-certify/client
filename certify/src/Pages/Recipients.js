@@ -164,7 +164,7 @@ export default function Recipients() {
             style={{ marginTop: 10 }}
             className="btn btn-primary"
           >
-            <i class="bi bi-arrow-repeat"> Update</i>
+            <i className="bi bi-arrow-repeat"> Update</i>
           </button>
           {showAlert && (
             <Alert variant="filled" severity="success">

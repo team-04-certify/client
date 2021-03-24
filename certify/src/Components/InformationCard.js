@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import img from "../assets/sertifikat.png";
 import { useSelector, useDispatch } from "react-redux";
-
 import allActions from "../Store/Actions";
 
 export default function InformationCard({ event }) {
   const [input, setInput] = useState(null);
-  console.log(event, '===event')
+  console.log(event, "===event");
 
   const styles = {
     card: {
@@ -60,12 +59,12 @@ export default function InformationCard({ event }) {
       console.log(input);
       const formdata = new FormData();
       formdata.append("file", input);
-      console.log(formdata, '===formdata')
+      console.log(formdata, "===formdata");
       await dispatch(
         allActions.event.uploadBanner({
           data: formdata,
           access_token: localStorage.access_token,
-          eventId: event.id
+          eventId: event.id,
         })
       );
     } catch (error) {
@@ -75,8 +74,7 @@ export default function InformationCard({ event }) {
 
   return (
     <Card className="info-card">
-      {
-        !event.banner?
+      {!event.banner ? (
         <div className="upload-cont card">
           <form action="">
             <input
@@ -88,15 +86,12 @@ export default function InformationCard({ event }) {
               Upload file
             </button>
           </form>
-        </div>:
-        <div className="banner-img">
-          <img
-            style={styles.image}
-            src={event.banner}
-            alt=""
-          />
         </div>
-      }
+      ) : (
+        <div className="banner-img">
+          <img style={styles.image} src={event.banner} alt="" />
+        </div>
+      )}
       <div className="card-desc">
         <div className="card-col">
           <h5>Title</h5>
