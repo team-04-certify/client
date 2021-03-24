@@ -18,6 +18,7 @@ export default function Template() {
   const { eventId } = useParams();
   const loading = useSelector((state) => state.recipient.loading);
   const [showAlert, setShowAlert] = useState(false);
+  const [showAlertUpload, setShowAlertUpload] = useState(false);
   const [templateNumber, setTemplateNumber] = useState(1);
 
   const getFile = (e) => {
@@ -30,6 +31,7 @@ export default function Template() {
     try {
       e.preventDefault();
       console.log(input);
+      setShowAlertUpload(true);
       const formData = new FormData();
       formData.append("file", input);
       await dispatch(
@@ -39,6 +41,10 @@ export default function Template() {
           eventId,
         })
       );
+
+      setTimeout(() => {
+        setShowAlertUpload(false);
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -105,11 +111,23 @@ export default function Template() {
           style={{ paddingLeft: "45%" }}
           severity="success"
         >
-          Success added recipients
+          Success send template
         </Alert>
       ) : (
         <p></p>
       )}
+      {showAlertUpload ? (
+        <Alert
+          variant="filled"
+          style={{ paddingLeft: "45%" }}
+          severity="success"
+        >
+          Success add template
+        </Alert>
+      ) : (
+        <p></p>
+      )}
+
       <section className="template" style={{ position: "relative" }}>
         <div className="template-cont d-flex justify-content-center align-items-center card">
           <h3>Choose template</h3>
