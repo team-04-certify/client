@@ -28,7 +28,7 @@ export default function Recipients() {
         access_token: localStorage.access_token,
         eventId,
       })
-    );
+    )
     dispatch(
       allActions.event.getEvent({
         access_token: localStorage.access_token,
@@ -99,6 +99,20 @@ export default function Recipients() {
       console.log(error);
     }
   };
+  const getUpdate = () => {
+    dispatch(
+      allAction.recipient.getAllRecipients({
+        access_token: localStorage.access_token,
+        eventId,
+      })
+    )
+    dispatch(
+      allActions.event.getEvent({
+        access_token: localStorage.access_token,
+        eventId,
+      })
+    );
+  };
 
   return (
     <div className="recipient">
@@ -111,6 +125,7 @@ export default function Recipients() {
             </button>
           </Form>
         </div>
+
         <div className="recipient-tab d-flex justify-content-center flex-column">
           {!showAdd ? (
             <a onClick={(e) => clickShowAdd(e)} className="btn btn-primary">
@@ -118,6 +133,9 @@ export default function Recipients() {
               Add recipient
             </a>
           ) : null}
+          <button onClick={getUpdate} className="btn btn-primary">
+                <i class="bi bi-arrow-repeat"> Update</i>
+          </button>
           <table className="table mt-3">
             <thead className="thead-light">
               <tr>

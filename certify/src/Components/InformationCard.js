@@ -39,7 +39,7 @@ export default function InformationCard({ event }) {
         access_token: localStorage.access_token,
       })
     );
-  }, [dispatch]);
+  }, [event]);
 
   useEffect(() => {
     //

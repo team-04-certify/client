@@ -93,7 +93,7 @@ export default function RecipientRow (props) {
           <td>{props.recipient.role}</td>
           <td>{props.recipient.email}</td>
           <td>{props.recipient.certificateNumber}</td>
-          <td>Not yet sent</td>
+          <td>{props.recipient.status}</td>
           <td>
             <div className="action-btn">
               <a onClick={(e) => clickShowEdit(e)}><i style={{color: '#1265D7'}} className="bi bi-pencil-square"></i></a>
