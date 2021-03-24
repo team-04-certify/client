@@ -53,9 +53,9 @@ export default function NavbarInformation() {
     <>
       <Navbar style={styles.body} className="justify-content-between">
         <Nav className="mr-auto">
-          <Navbar.Brand onClick={handleInformation}>
+          <a onClick={handleInformation}>
             <h5 style={styles.logo}>{event.event && event.event[0].title}</h5>
-          </Navbar.Brand>
+          </a>
         </Nav>
         <Nav className="mr-auto">
           <Nav.Link style={styles.title} onClick={handleEdit}>

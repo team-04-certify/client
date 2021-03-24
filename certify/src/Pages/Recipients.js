@@ -153,19 +153,20 @@ export default function Recipients() {
         </div>
 
         <div className="recipient-tab d-flex justify-content-center flex-column">
-          {!showAdd ? (
-            <a onClick={(e) => clickShowAdd(e)} className="btn btn-primary">
-              <i className="bi bi-plus-circle-fill mx-2"></i>
-              Add recipient
-            </a>
-          ) : null}
-          <button
-            onClick={getUpdate}
-            style={{ marginTop: 10 }}
-            className="btn btn-primary"
-          >
-            <i class="bi bi-arrow-repeat"> Update</i>
-          </button>
+          <div className="btn-cont d-flex flex-row justify-content-between">
+            {!showAdd ? (
+              <button onClick={(e) => clickShowAdd(e)} className="btn btn-primary">
+                <i className="bi bi-plus-circle-fill mr-2"></i>
+                Add recipient
+              </button>
+            ) : null}
+            <button
+              onClick={getUpdate}
+              className="btn btn-secondary"
+            >
+              <i class="bi bi-arrow-repeat"></i>
+            </button>
+          </div>
           {showAlert && (
             <Alert variant="filled" severity="success">
               Success added recipients

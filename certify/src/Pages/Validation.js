@@ -21,8 +21,8 @@ export default function Validation() {
   console.log("aaa");
   console.log(recipient);
   return (
-    <div>
+    <section className="validation-cont">
       <ValidateCard recipient={recipient} />
-    </div>
+    </section>
   );
 }

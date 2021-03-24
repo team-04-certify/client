@@ -38,6 +38,7 @@ export default function Events() {
                 title={event.title}
                 date={event.date}
                 type={event.type}
+                banner={event.banner}
               />
             );
           })

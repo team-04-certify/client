@@ -27,7 +27,6 @@ export default function Template() {
   const uploadFile = async (e) => {
     try {
       e.preventDefault();
-      console.log(input);
       const formdata = new FormData();
       formdata.append("file", input);
       await dispatch(

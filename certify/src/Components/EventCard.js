@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import img from "../assets/sertifikat.png";
 import allActions from "../Store/Actions";
 
-export default function EventCard({ title, date, type, event, participants }) {
+export default function EventCard({ title, date, type, event, participants, banner }) {
   const styles = {
     card: {
       marginBottom: 20,
@@ -62,8 +62,8 @@ export default function EventCard({ title, date, type, event, participants }) {
       <div>
         <img
           style={styles.image}
-          src="https://i.pinimg.com/originals/5f/d4/4f/5fd44f56f142b6448819e7c4e0b0ad8c.jpg"
-          alt=""
+          src={banner}
+          alt='event banner'
         />
       </div>
       <div>
