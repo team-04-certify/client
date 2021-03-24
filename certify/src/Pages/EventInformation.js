@@ -23,12 +23,12 @@ export default function EventInformation() {
   }, []);
 
   return (
-    <div>
+    <section className="info-cont">
       {event.event ? (
         <InformationCard event={event.event[0]} />
       ) : (
         <p>Loading..</p>
       )}
-    </div>
+    </section>
   );
 }

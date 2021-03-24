@@ -73,11 +73,10 @@ export default function Template() {
   };
 
   return (
-    <div className="template">
-      <div className="container">
+    <section className="template">
         <div className="template-cont d-flex justify-content-center align-items-center card">
-          <h4>Upload your template</h4>
-          <div>
+          <h3>Choose template</h3>
+          <div className="template-div">
             <img
               style={templateNumber === 1 ? styles.selectedImage : styles.image}
               src={img1}
@@ -97,10 +96,8 @@ export default function Template() {
               alt=""
               onClick={() => changeTemplate(3)}
             />
-
-            <Button onClick={generateAndSendCertificate}>Send</Button>
           </div>
-
+          <h5>or upload your template</h5>
           <Form className="mt-5">
             <input
               type="file"
@@ -111,8 +108,8 @@ export default function Template() {
               Upload file
             </button>
           </Form>
+          <Button className="btn-large" onClick={generateAndSendCertificate}>Send</Button>
         </div>
-      </div>
-    </div>
+    </section>
   );
 }
