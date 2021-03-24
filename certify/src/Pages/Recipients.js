@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Papa from "papaparse";
+import { Alert } from "@material-ui/lab";
 
 import allAction from "../Store/Actions";
 
-import { Form, Button, Container, input } from "react-bootstrap";
+import { Form, Button, Container, input, Spinner } from "react-bootstrap";
 import RecipientRow from "../Components/RecipientRow";
 import allActions from "../Store/Actions";
 
 export default function Recipients() {
   const [showAdd, setShowAdd] = useState(false);
   const [input, setInput] = useState(null);
+  const [string, setString] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const [name, setName] = useState(null);
   const [role, setRole] = useState(null);
@@ -19,8 +22,10 @@ export default function Recipients() {
   const [certificateNumber, setCertificateNumber] = useState(null);
 
   const { eventId } = useParams();
+  const inputRef = useRef(null);
   const dispatch = useDispatch();
   const recipients = useSelector((state) => state.recipient.recipients);
+  const loading = useSelector((state) => state.recipient.loading);
 
   useEffect(() => {
     dispatch(
@@ -28,7 +33,7 @@ export default function Recipients() {
         access_token: localStorage.access_token,
         eventId,
       })
-    )
+    );
     dispatch(
       allActions.event.getEvent({
         access_token: localStorage.access_token,
@@ -48,18 +53,21 @@ export default function Recipients() {
   };
 
   const getFile = (e) => {
-    console.log({ file: e.target.files });
+    console.log({ ref: inputRef.current.value });
     Papa.parse(e.target.files[0], {
       header: true,
       complete: function (results, _) {
         setInput(results.data);
+        setString(e.target.files[0].name);
       },
     });
-    console.log({ file: e.target.files });
-    e.target.files.file = null;
+    console.log({ file: e.target.files[0].name });
+    console.log({ string });
+    // e.target.value = null;
   };
 
   const uploadFile = async (e) => {
+    console.log({ stringAtas: string });
     try {
       e.preventDefault();
       await dispatch(
@@ -69,11 +77,15 @@ export default function Recipients() {
           eventId,
         })
       );
-      // e.target.value = null;
+      setInput(null);
+      inputRef.current.value = "";
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 2000);
       console.log(e.target);
     } catch (error) {
       console.log(error);
     }
+    console.log({ stringCatch: string });
   };
 
   const addRecipient = async (e) => {
@@ -94,6 +106,9 @@ export default function Recipients() {
           eventId,
         })
       );
+
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 2000);
       setShowAdd(false);
     } catch (error) {
       console.log(error);
@@ -105,7 +120,7 @@ export default function Recipients() {
         access_token: localStorage.access_token,
         eventId,
       })
-    )
+    );
     dispatch(
       allActions.event.getEvent({
         access_token: localStorage.access_token,
@@ -115,11 +130,22 @@ export default function Recipients() {
   };
 
   return (
-    <div className="recipient">
+    <div style={{ position: "relative" }} className="recipient">
+      {loading && (
+        <Spinner
+          style={{ position: "absolute", top: "50%", left: "50%" }}
+          animation="border"
+        />
+      )}
       <div className="container">
         <div className="upload-cont card">
           <Form action="">
-            <input type="file" onChange={(e) => getFile(e)} accept=".csv" />
+            <input
+              type="file"
+              onChange={(e) => getFile(e)}
+              accept=".csv"
+              ref={inputRef}
+            />
             <button onClick={(e) => uploadFile(e)} className="btn btn-primary">
               Upload file
             </button>
@@ -133,9 +159,18 @@ export default function Recipients() {
               Add recipient
             </a>
           ) : null}
-          <button onClick={getUpdate} className="btn btn-primary">
-                <i class="bi bi-arrow-repeat"> Update</i>
+          <button
+            onClick={getUpdate}
+            style={{ marginTop: 10 }}
+            className="btn btn-primary"
+          >
+            <i class="bi bi-arrow-repeat"> Update</i>
           </button>
+          {showAlert && (
+            <Alert variant="filled" severity="success">
+              Success added recipients
+            </Alert>
+          )}
           <table className="table mt-3">
             <thead className="thead-light">
               <tr>

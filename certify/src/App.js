@@ -75,6 +75,7 @@ function App() {
           <CreateEvent />
         </Route>
         <Route path="/register">
+          <NavbarHome />
           <Register />
         </Route>
         <Route path="/login">
