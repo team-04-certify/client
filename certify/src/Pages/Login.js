@@ -74,9 +74,22 @@ export default function Login() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{padding:"60px"}}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ padding: "60px" }}
+    >
+      {console.log({ error: error.message })}
       <div style={styles.form}>
         <h4 style={styles.title}>Login</h4>
+        <p style={{ color: "red" }}>{error.message}</p>
+        {/* {error &&
+          error.map((el, i) => {
+            return (
+              <p style={{ color: "red" }} key={i}>
+                {el.message}
+              </p>
+            );
+          })} */}
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
           <Form.Control

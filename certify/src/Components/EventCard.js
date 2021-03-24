@@ -9,10 +9,7 @@ import allActions from "../Store/Actions";
 export default function EventCard({ title, date, type, event, participants }) {
   const styles = {
     card: {
-      marginLeft: 50,
-      marginRight: 50,
-      marginBottom: 30,
-      padding: 20
+      marginBottom: 20,
     },
     container: {
       padding: 10,
@@ -61,9 +58,13 @@ export default function EventCard({ title, date, type, event, participants }) {
   }
 
   return (
-    <Card className="large-card">
+    <Card className="large-card" style={styles.card}>
       <div>
-        <img style={styles.image} src={img} alt="" />
+        <img
+          style={styles.image}
+          src="https://i.pinimg.com/originals/5f/d4/4f/5fd44f56f142b6448819e7c4e0b0ad8c.jpg"
+          alt=""
+        />
       </div>
       <div>
         <h5>{title}</h5>
