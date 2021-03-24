@@ -76,7 +76,10 @@ export default function Register() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{padding:"60px"}}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ padding: "60px" }}
+    >
       <div style={styles.form}>
         <h4 style={styles.title}>Register</h4>
         {error &&

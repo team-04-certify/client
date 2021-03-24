@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-
+import { Alert } from "@material-ui/lab";
 import allAction from "../Store/Actions";
 
 import { Form, Button, Container, input } from "react-bootstrap";
@@ -9,13 +9,15 @@ import RecipientRow from "../Components/RecipientRow";
 import img1 from "../assets/template1.png";
 import img2 from "../assets/template2.png";
 import img3 from "../assets/template3.png";
+import { Spinner } from "react-bootstrap";
 
 export default function Template() {
   const [input, setInput] = useState(null);
-  const history = useHistory()
+  const history = useHistory();
   const dispatch = useDispatch();
   const { eventId } = useParams();
-
+  const loading = useSelector((state) => state.recipient.loading);
+  const [showAlert, setShowAlert] = useState(false);
   const [templateNumber, setTemplateNumber] = useState(1);
 
   const getFile = (e) => {
@@ -28,11 +30,11 @@ export default function Template() {
     try {
       e.preventDefault();
       console.log(input);
-      const formdata = new FormData();
-      formdata.append("file", input);
+      const formData = new FormData();
+      formData.append("file", input);
       await dispatch(
         allAction.event.uploadTemplate({
-          data: formdata,
+          data: formData,
           access_token: localStorage.access_token,
           eventId,
         })
@@ -46,23 +48,45 @@ export default function Template() {
     setTemplateNumber(number);
   }
 
-  function generateAndSendCertificate() {
-    dispatch(
+  async function generateAndSendCertificate() {
+    let temp = await dispatch(
       allAction.recipient.sendCertificate({
         eventId,
         access_token: localStorage.access_token,
         templateNumber,
       })
     );
-    history.push(`/${eventId}/recipients`)
+
+    setShowAlert(true);
+
+    setTimeout(() => {
+      history.push(`/${eventId}/recipients`);
+    }, 3000);
+
+    // if (loading) {
+    //   console.log(loading, "1");
+    //   setSpinnerLoading(`<Spinner
+    //   style={{ position: "absolute", top: "50%", left: "50%" }}
+    //   animation="border"
+    //   />`);
+    // } else {
+    //   console.log(loading, "2");
+    //   history.push(`/${eventId}/recipients`);
+    // }
   }
+
+  // useEffect(() => {
+  //   if (loading) {
+  //     setSpinnerLoading(true);
+  //   }
+  // }, [loading]);
 
   const styles = {
     image: {
       width: 250,
       height: 180,
       cursor: "pointer",
-      margin: "10px"
+      margin: "10px",
     },
     selectedImage: {
       width: 250,
@@ -74,7 +98,19 @@ export default function Template() {
   };
 
   return (
-    <section className="template">
+    <>
+      {showAlert ? (
+        <Alert
+          variant="filled"
+          style={{ paddingLeft: "45%" }}
+          severity="success"
+        >
+          Success added recipients
+        </Alert>
+      ) : (
+        <p></p>
+      )}
+      <section className="template" style={{ position: "relative" }}>
         <div className="template-cont d-flex justify-content-center align-items-center card">
           <h3>Choose template</h3>
           <div className="template-div">
@@ -109,8 +145,11 @@ export default function Template() {
               Upload file
             </button>
           </Form>
-          <Button className="btn-large" onClick={generateAndSendCertificate}>Send</Button>
+          <Button className="btn-large" onClick={generateAndSendCertificate}>
+            Send
+          </Button>
         </div>
-    </section>
+      </section>
+    </>
   );
 }

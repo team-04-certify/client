@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+import { ModalDelete } from "../Components/";
 import img from "../assets/sertifikat.png";
 import allActions from "../Store/Actions";
 
@@ -57,6 +57,11 @@ export default function EventCard({ title, date, type, event, participants }) {
     );
   }
 
+  function onConfirm() {
+    console.log("aaaaaaaaaaa");
+    // Preform your action.
+  }
+
   return (
     <Card className="large-card" style={styles.card}>
       <div>
@@ -90,13 +95,16 @@ export default function EventCard({ title, date, type, event, participants }) {
         >
           Edit
         </Button>
-        <Button
+
+        <ModalDelete onDelete={onDelete} />
+
+        {/* <Button
           style={styles.button}
           onClick={onDelete}
           variant="outline-primary"
         >
           Delete
-        </Button>
+        </Button> */}
       </div>
     </Card>
   );

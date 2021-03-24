@@ -67,7 +67,6 @@ function App() {
           <UpdateEvent />
         </Route>
         <Route path="/certificate/:recipientId">
-          <NavbarHome />
           <Validation />
         </Route>
         <Route path="/create-event">

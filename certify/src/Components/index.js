@@ -5,3 +5,4 @@ export { default as EventCard } from "./EventCard";
 export { default as InformationCard } from "./InformationCard";
 export { default as RecipientRow } from "./RecipientRow";
 export { default as ValidateCard } from "./ValidateCard";
+export { default as ModalDelete } from "./ModalDelete";
