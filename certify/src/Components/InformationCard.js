@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import img from "../assets/sertifikat.png";
 import { useSelector, useDispatch } from "react-redux";
-
 import allActions from "../Store/Actions";
+import { Alert } from "@material-ui/lab";
 
 export default function InformationCard({ event }) {
   const [input, setInput] = useState(null);
-  console.log(event, '===event')
+  console.log(event, "===event");
 
   const styles = {
     card: {
@@ -54,64 +54,85 @@ export default function InformationCard({ event }) {
     setInput(file);
   };
 
+  const [showAlert, setShowAlert] = useState(false);
+
   const uploadFile = async (e) => {
     try {
       e.preventDefault();
-      console.log(input);
-      const formdata = new FormData();
-      formdata.append("file", input);
-      console.log(formdata, '===formdata')
-      await dispatch(
-        allActions.event.uploadBanner({
-          data: formdata,
-          access_token: localStorage.access_token,
-          eventId: event.id
-        })
-      );
+      if (input.length !== 0) {
+        setShowAlert(true);
+        const formdata = new FormData();
+        formdata.append("file", input);
+        console.log(formdata, "===formdata");
+        await dispatch(
+          allActions.event.uploadBanner({
+            data: formdata,
+            access_token: localStorage.access_token,
+            eventId: event.id,
+          })
+        );
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 3000);
+      } else {
+        showAlert(false);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Card className="info-card">
-      {
-        !event.banner?
-        <div className="upload-cont card">
-          <form action="">
-            <input
-              type="file"
-              onChange={(e) => getFile(e)}
-              accept=".png,.jpg,.jpeg"
-            />
-            <button onClick={(e) => uploadFile(e)} className="btn btn-primary">
-              Upload file
-            </button>
-          </form>
-        </div>:
-        <div className="banner-img">
-          <img
-            style={styles.image}
-            src={event.banner}
-            alt=""
-          />
+    <>
+      {showAlert ? (
+        <Alert
+          variant="filled"
+          style={{ paddingLeft: "45%" }}
+          severity="success"
+        >
+          Success add banner
+        </Alert>
+      ) : (
+        <p></p>
+      )}
+      <Card className="info-card">
+        {!event.banner ? (
+          <div className="upload-cont card">
+            <form action="">
+              <input
+                type="file"
+                onChange={(e) => getFile(e)}
+                accept=".png,.jpg,.jpeg"
+              />
+              <button
+                onClick={(e) => uploadFile(e)}
+                className="btn btn-primary"
+              >
+                Upload file
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className="banner-img">
+            <img style={styles.image} src={event.banner} alt="" />
+          </div>
+        )}
+        <div className="card-desc">
+          <div className="card-col">
+            <h5>Title</h5>
+            <h5>Date</h5>
+            <h5>Type</h5>
+            <h5>Recipients</h5>
+          </div>
+          <div className="card-col">
+            <h5 className="bolder">{event.title}</h5>
+            <h5 className="bolder">{dateString}</h5>
+            <h5 className="bolder">{event.type}</h5>
+            <h5 className="bolder">{recipients.length}</h5>
+            {console.log({ recipients })}
+          </div>
         </div>
-      }
-      <div className="card-desc">
-        <div className="card-col">
-          <h5>Title</h5>
-          <h5>Date</h5>
-          <h5>Type</h5>
-          <h5>Recipients</h5>
-        </div>
-        <div className="card-col">
-          <h5 className="bolder">{event.title}</h5>
-          <h5 className="bolder">{dateString}</h5>
-          <h5 className="bolder">{event.type}</h5>
-          <h5 className="bolder">{recipients.length}</h5>
-          {console.log({ recipients })}
-        </div>
-      </div>
-    </Card>
+      </Card>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { EventCard } from "../Components";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../Store/Actions";
 import { useHistory } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 export default function Events() {
   const dispatch = useDispatch();
@@ -20,12 +21,11 @@ export default function Events() {
     }
   }, []);
 
-  console.log({ events });
-
   if (!loading) {
     return (
-      <div className="event-cont">
+      <div className="event-cont" style={{ position: "relative" }}>
         <h3>Your events</h3>
+
         <div className="card-cont">
         {
           events.Events &&
@@ -48,8 +48,12 @@ export default function Events() {
     );
   } else {
     return (
-      <div>
-        <p>loading..</p>
+      <div className="event-cont">
+        <h3>Your events</h3>
+        <Spinner
+          style={{ position: "absolute", top: "50%", left: "50%" }}
+          animation="border"
+        />
       </div>
     );
   }
