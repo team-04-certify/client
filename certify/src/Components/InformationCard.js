@@ -27,7 +27,6 @@ export default function InformationCard({ event }) {
       paddingLeft: 30,
     },
   };
-  // console.log(event);
   let dateString = new Date(event.date).toLocaleDateString("en-US");
 
   const dispatch = useDispatch();
@@ -47,31 +46,29 @@ export default function InformationCard({ event }) {
   }, [recipients]);
 
   return (
-    <Card style={styles.card}>
-      <Container style={styles.container}>
-        <Row>
-          <Col style={styles.title}>
-            <h5>Title</h5>
-            <h5>Date</h5>
-            <h5>Type</h5>
-            <h5>Recipients</h5>
-          </Col>
-          <Col style={styles.title}>
-            <h5>{event.title}</h5>
-            <h5>{dateString}</h5>
-            <h5>{event.type}</h5>
-            <h5>{recipients.length}</h5>
-            {console.log({ recipients })}
-          </Col>
-          <Col>
-            <img
-              style={styles.image}
-              src="https://i.pinimg.com/originals/5f/d4/4f/5fd44f56f142b6448819e7c4e0b0ad8c.jpg"
-              alt=""
-            />
-          </Col>
-        </Row>
-      </Container>
+    <Card className="info-card">
+      <div>
+        <img
+          style={styles.image}
+          src="https://i.pinimg.com/originals/5f/d4/4f/5fd44f56f142b6448819e7c4e0b0ad8c.jpg"
+          alt=""
+        />
+      </div>
+      <div className="card-desc">
+        <div className="card-col">
+          <h5>Title</h5>
+          <h5>Date</h5>
+          <h5>Type</h5>
+          <h5>Recipients</h5>
+        </div>
+        <div className="card-col">
+          <h5 className="bolder">{event.title}</h5>
+          <h5 className="bolder">{dateString}</h5>
+          <h5 className="bolder">{event.type}</h5>
+          <h5 className="bolder">{recipients.length}</h5>
+          {console.log({ recipients })}
+        </div>
+      </div>
     </Card>
   );
 }

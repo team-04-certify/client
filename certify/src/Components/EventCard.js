@@ -12,6 +12,7 @@ export default function EventCard({ title, date, type, event, participants }) {
       marginLeft: 50,
       marginRight: 50,
       marginBottom: 30,
+      padding: 20
     },
     container: {
       padding: 10,
@@ -60,50 +61,42 @@ export default function EventCard({ title, date, type, event, participants }) {
   }
 
   return (
-    <Card style={styles.card}>
-      <Container style={styles.container}>
-        <Row>
-          <Col>
-            <img style={styles.image} src={img} alt="" />
-          </Col>
-          <Col style={styles.title}>
-            <h5>{title}</h5>
-          </Col>
-          <Col style={styles.title}>
-            <h5>{dateString}</h5>
-          </Col>
-          <Col style={styles.title}>
-            <h5>Participants: {participants}</h5>
-          </Col>
-          <Col style={styles.title}>
-            <Button
-              style={styles.button}
-              onClick={onInfo}
-              variant="outline-primary"
-            >
-              Info
-            </Button>
-          </Col>
-          <Col style={styles.title}>
-            <Button
-              style={styles.button}
-              onClick={onUpdate}
-              variant="outline-primary"
-            >
-              Edit
-            </Button>
-          </Col>
-          <Col style={styles.title}>
-            <Button
-              style={styles.button}
-              onClick={onDelete}
-              variant="outline-primary"
-            >
-              Delete
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+    <Card className="large-card">
+      <div>
+        <img style={styles.image} src={img} alt="" />
+      </div>
+      <div>
+        <h5>{title}</h5>
+      </div>
+      <div>
+        <h5>{dateString}</h5>
+      </div>
+      <div>
+        <h5>Participants: {participants}</h5>
+      </div>
+      <div>
+        <Button
+          style={styles.button}
+          onClick={onInfo}
+          variant="outline-primary"
+        >
+          Details
+        </Button>
+        <Button
+          style={styles.button}
+          onClick={onUpdate}
+          variant="outline-primary"
+        >
+          Edit
+        </Button>
+        <Button
+          style={styles.button}
+          onClick={onDelete}
+          variant="outline-primary"
+        >
+          Delete
+        </Button>
+      </div>
     </Card>
   );
 }

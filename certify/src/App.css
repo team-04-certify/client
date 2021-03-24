@@ -26,6 +26,12 @@ btn-secondary {
   height: 100vh !important;
 }
 
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Global ends */
 
 /* Navbar home */
@@ -75,12 +81,6 @@ btn-secondary {
 .landing-page h1 {
   font-weight: bold;
 }
-
-/* .landing-page img {
-  width: 600px;
-  height: auto;
-} */
-
 /* Landing page ends */
 
 /* Register/Login */
@@ -223,9 +223,12 @@ h5 {
 
 /* Template */
 .template-cont {
-  margin-top: 150px;
-  width: 100%;
+  margin: 30px 40px;
   padding: 80px 30px;
+}
+
+.template-div {
+  margin-bottom: 20px;
 }
 
 .recipient {
@@ -245,4 +248,66 @@ h5 {
   width: 170px;
 }
 
+button.btn-large {
+  width: 100%;
+  margin-top: 50px !important;
+}
+
 /* Template ends */
+
+/* Events */
+.event-cont,
+.info-cont {
+  padding: 60px 50px;
+}
+
+.card-cont {
+  margin-top: 50px;
+}
+
+.large-card {
+  margin: 0 auto;
+  width: 100%;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.card button {
+  margin: 0 5px;
+}
+
+/* Events ends */
+
+/* Information event  */
+.info-card {
+  margin: 0 auto;
+  width: 100%;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.card-desc {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+
+.card-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 30px;
+}
+
+.card-col .bolder {
+  font-weight: 800;
+}
+
+/* Information event ends */

@@ -66,47 +66,49 @@ export default function CreateEvent() {
   };
 
   return (
-    <div style={styles.form}>
-      <h4 style={styles.title}>Create event</h4>
-      <Form.Group controlId="title">
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          onChange={onChangeInput}
-          style={styles.input}
-          type="title"
-          value={input.title}
-        />
-      </Form.Group>
+    <section className="create-event-cont">
+      <div style={styles.form}>
+        <h4 style={styles.title}>Create event</h4>
+        <Form.Group controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            onChange={onChangeInput}
+            style={styles.input}
+            type="title"
+            value={input.title}
+          />
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="date">
-        <Form.Label>Date</Form.Label>
-        <Form.Control
-          onChange={onChangeInput}
-          style={styles.input}
-          type="Date"
-          value={input.date}
-        />
-        {console.log({ date: input.date })}
-      </Form.Group>
+        <Form.Group style={styles.content} controlId="date">
+          <Form.Label>Date</Form.Label>
+          <Form.Control
+            onChange={onChangeInput}
+            style={styles.input}
+            type="Date"
+            value={input.date}
+          />
+          {console.log({ date: input.date })}
+        </Form.Group>
 
-      <Form.Group style={styles.content} controlId="type">
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          onChange={onChangeInput}
-          style={styles.input}
-          type="Description"
-          value={input.type}
-        />
-      </Form.Group>
-      <Button
-        onClick={handleOnSubmit}
-        style={styles.button}
-        variant="primary"
-        type="submit"
-        className="mt-3"
-      >
-        Create
-      </Button>
-    </div>
+        <Form.Group style={styles.content} controlId="type">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            onChange={onChangeInput}
+            style={styles.input}
+            type="Description"
+            value={input.type}
+          />
+        </Form.Group>
+        <Button
+          onClick={handleOnSubmit}
+          style={styles.button}
+          variant="primary"
+          type="submit"
+          className="mt-3"
+        >
+          Create
+        </Button>
+      </div>
+    </section>
   );
 }

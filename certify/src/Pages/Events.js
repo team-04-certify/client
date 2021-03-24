@@ -24,9 +24,11 @@ export default function Events() {
 
   if (!loading) {
     return (
-      <div>
-        <h4 style={{ marginLeft: 50, marginTop: 30 }}>Your events</h4>
-        {events.Events &&
+      <div className="event-cont">
+        <h3>Your events</h3>
+        <div className="card-cont">
+        {
+          events.Events &&
           events.Events.map((event) => {
             return (
               <EventCard
@@ -38,7 +40,9 @@ export default function Events() {
                 type={event.type}
               />
             );
-          })}
+          })
+        }
+        </div>
       </div>
     );
   } else {

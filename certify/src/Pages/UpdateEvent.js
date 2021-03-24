@@ -112,56 +112,58 @@ export default function UpdateEvent() {
     }
 
     return (
-      <div style={styles.form}>
-        <h4 style={styles.title}>Edit event</h4>
-        <Form.Group controlId="title">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            style={styles.input}
-            type="title"
-            value={input.title}
-            onChange={onChangeInput}
-          />
-        </Form.Group>
+      <section>
+        <div style={styles.form}>
+          <h4 style={styles.title}>Edit event</h4>
+          <Form.Group controlId="title">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              style={styles.input}
+              type="title"
+              value={input.title}
+              onChange={onChangeInput}
+            />
+          </Form.Group>
 
-        <Form.Group style={styles.content} controlId="date">
-          <Form.Label>Date</Form.Label>
-          <Form.Control
-            style={styles.input}
-            type="Date"
-            value={input.date}
-            onChange={onChangeInput}
-          />
-        </Form.Group>
+          <Form.Group style={styles.content} controlId="date">
+            <Form.Label>Date</Form.Label>
+            <Form.Control
+              style={styles.input}
+              type="Date"
+              value={input.date}
+              onChange={onChangeInput}
+            />
+          </Form.Group>
 
-        <Form.Group style={styles.content} controlId="type">
-          <Form.Label>Type</Form.Label>
-          <Form.Control
-            style={styles.input}
-            type="Description"
-            value={input.type}
-            onChange={onChangeInput}
-          />
-        </Form.Group>
-        <Button
-          style={styles.button1}
-          onClick={handleOnSubmit}
-          variant="primary"
-          type="submit"
-          className="mt-3"
-        >
-          Save
-        </Button>
-        <Button
-          style={styles.button2}
-          onClick={cancelUpdate}
-          variant="primary"
-          type="submit"
-          className="mt-3"
-        >
-          Cancel
-        </Button>
-      </div>
+          <Form.Group style={styles.content} controlId="type">
+            <Form.Label>Type</Form.Label>
+            <Form.Control
+              style={styles.input}
+              type="Description"
+              value={input.type}
+              onChange={onChangeInput}
+            />
+          </Form.Group>
+          <Button
+            style={styles.button1}
+            onClick={handleOnSubmit}
+            variant="primary"
+            type="submit"
+            className="mt-3"
+          >
+            Save
+          </Button>
+          <Button
+            style={styles.button2}
+            onClick={cancelUpdate}
+            variant="primary"
+            type="submit"
+            className="mt-3"
+          >
+            Cancel
+          </Button>
+        </div>
+      </section>
     );
   } else {
     return <div>loading..</div>;
