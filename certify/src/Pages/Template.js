@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import allAction from "../Store/Actions";
 
 import { Form, Button, Container, input } from "react-bootstrap";
 import RecipientRow from "../Components/RecipientRow";
-import img1 from "../assets/certificate1.png";
-import img2 from "../assets/certificate2.png";
-import img3 from "../assets/certificate3.png";
+import img1 from "../assets/template1.png";
+import img2 from "../assets/template2.png";
+import img3 from "../assets/template3.png";
 
 export default function Template() {
   const [input, setInput] = useState(null);
-
+  const history = useHistory()
   const dispatch = useDispatch();
   const { eventId } = useParams();
 
@@ -54,6 +54,7 @@ export default function Template() {
         templateNumber,
       })
     );
+    history.push(`/${eventId}/recipients`)
   }
 
   const styles = {
@@ -61,7 +62,7 @@ export default function Template() {
       width: 250,
       height: 180,
       cursor: "pointer",
-      margin: "10px",
+      margin: "10px"
     },
     selectedImage: {
       width: 250,
