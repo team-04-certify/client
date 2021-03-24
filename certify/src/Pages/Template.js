@@ -30,7 +30,6 @@ export default function Template() {
   const uploadFile = async (e) => {
     try {
       e.preventDefault();
-      console.log(input);
       setShowAlertUpload(true);
       const formData = new FormData();
       formData.append("file", input);

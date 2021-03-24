@@ -27,19 +27,22 @@ export default function Events() {
         <h3>Your events</h3>
 
         <div className="card-cont">
-          {events.Events &&
-            events.Events.map((event) => {
-              return (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  participants={event.Recipients.length}
-                  title={event.title}
-                  date={event.date}
-                  type={event.type}
-                />
-              );
-            })}
+        {
+          events.Events &&
+          events.Events.map((event) => {
+            return (
+              <EventCard
+                key={event.id}
+                event={event}
+                participants={event.Recipients.length}
+                title={event.title}
+                date={event.date}
+                type={event.type}
+                banner={event.banner}
+              />
+            );
+          })
+        }
         </div>
       </div>
     );
