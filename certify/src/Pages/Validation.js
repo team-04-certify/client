@@ -22,22 +22,6 @@ export default function Validation() {
   return (
     <section style={{ position: "relative" }} className="validation-cont">
       <ValidateCard recipient={recipient} />
-      <img
-        style={{ top: "55%", left: "75%", width: 90, position: "absolute" }}
-        src={img}
-        alt={img}
-      />
-      <p
-        style={{
-          color: "red",
-          top: "63%",
-          left: "82%",
-          width: 90,
-          position: "absolute",
-        }}
-      >
-        Valid
-      </p>
     </section>
   );
 }
