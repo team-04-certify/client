@@ -18,8 +18,6 @@ export default function Validation() {
     );
   }, [dispatch]);
 
-  console.log("aaa");
-  console.log(recipient);
   return (
     <section className="validation-cont">
       <ValidateCard recipient={recipient} />

@@ -41,7 +41,6 @@ const register = (payload) => {
         dispatch(setRegister(true));
       })
       .catch((err) => {
-        console.log({ err: err.response.data });
         dispatch(setError(err.response.data));
       });
     dispatch(setLoading(false));
@@ -57,7 +56,6 @@ const getLogin = (payload) => {
       data: payload,
     })
       .then((response) => {
-        console.log(response.data);
         if (response.data.access_token) {
           localStorage.setItem("access_token", response.data.access_token);
         }

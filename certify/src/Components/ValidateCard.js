@@ -24,7 +24,6 @@ export default function ValidateCard({ recipient }) {
       paddingLeft: 30,
     },
   };
-  console.log(recipient, "ininininini");
 
   if (recipient.Event) {
     return (

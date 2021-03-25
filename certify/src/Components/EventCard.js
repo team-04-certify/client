@@ -58,7 +58,6 @@ export default function EventCard({ title, date, type, event, participants, bann
   }
 
   function onConfirm() {
-    console.log("aaaaaaaaaaa");
     // Preform your action.
   }
 

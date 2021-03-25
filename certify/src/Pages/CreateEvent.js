@@ -15,8 +15,6 @@ export default function CreateEvent() {
     type: "",
   });
 
-  console.log({ localStorage });
-
   const onChangeInput = (e) => {
     setInput({
       ...input,
@@ -25,7 +23,6 @@ export default function CreateEvent() {
   };
 
   const handleOnSubmit = async () => {
-    console.log(input);
     let newEvent = await dispatch(
       allAction.event.addEvent({
         data: input,
@@ -87,7 +84,6 @@ export default function CreateEvent() {
             type="Date"
             value={input.date}
           />
-          {console.log({ date: input.date })}
         </Form.Group>
 
         <Form.Group style={styles.content} controlId="type">

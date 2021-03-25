@@ -31,7 +31,6 @@ const getEvents = (access_token) => {
 
       dispatch(setEvents(events.data));
     } catch (err) {
-      console.log(err.response);
       dispatch(setError(err));
     }
     dispatch(setLoading(false));
@@ -50,7 +49,6 @@ const getEvent = (payload) => {
       });
       return dispatch(setEvent(event.data));
     } catch (err) {
-      console.log(err.response);
       dispatch(setError(err));
     }
   };

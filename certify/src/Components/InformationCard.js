@@ -7,7 +7,6 @@ import { Alert } from "@material-ui/lab";
 
 export default function InformationCard({ event }) {
   const [input, setInput] = useState(null);
-  console.log(event, "===event");
 
   const styles = {
     card: {
@@ -63,7 +62,6 @@ export default function InformationCard({ event }) {
         setShowAlert(true);
         const formdata = new FormData();
         formdata.append("file", input);
-        console.log(formdata, "===formdata");
         await dispatch(
           allActions.event.uploadBanner({
             data: formdata,
@@ -129,7 +127,6 @@ export default function InformationCard({ event }) {
             <h5 className="bolder">{dateString}</h5>
             <h5 className="bolder">{event.type}</h5>
             <h5 className="bolder">{recipients.length}</h5>
-            {console.log({ recipients })}
           </div>
         </div>
       </Card>

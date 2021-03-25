@@ -31,8 +31,6 @@ function App() {
     //
   }, [page]);
 
-  console.log(page);
-
   return (
     <div>
       {/* {showNavbarHome && <NavbarHome />}

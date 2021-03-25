@@ -53,7 +53,6 @@ export default function Recipients() {
   };
 
   const getFile = (e) => {
-    console.log({ ref: inputRef.current.value });
     Papa.parse(e.target.files[0], {
       header: true,
       complete: function (results, _) {
@@ -61,13 +60,9 @@ export default function Recipients() {
         setString(e.target.files[0].name);
       },
     });
-    console.log({ file: e.target.files[0].name });
-    console.log({ string });
-    // e.target.value = null;
   };
 
   const uploadFile = async (e) => {
-    console.log({ stringAtas: string });
     try {
       e.preventDefault();
       await dispatch(
@@ -81,11 +76,9 @@ export default function Recipients() {
       inputRef.current.value = "";
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 2000);
-      console.log(e.target);
     } catch (error) {
       console.log(error);
     }
-    console.log({ stringCatch: string });
   };
 
   const addRecipient = async (e) => {

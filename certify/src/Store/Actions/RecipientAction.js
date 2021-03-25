@@ -30,7 +30,6 @@ const getAllRecipients = (payload) => {
       });
       dispatch(setRecipients(recipients.data));
     } catch (err) {
-      console.log(err.response);
       dispatch(setError(err));
     }
     dispatch(setLoading(false));
@@ -139,7 +138,6 @@ const sendCertificate = (payload) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-      console.log("1");
       let send = await axios({
         method: "GET",
         url: `${baseUrl}/certificates/${payload.eventId}/${payload.templateNumber}`,

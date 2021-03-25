@@ -12,8 +12,6 @@ export default function Register() {
     (state) => state.organizer.successRegister
   );
   const errorMsg = useSelector((state) => state.organizer.errors);
-  // const loading = useSelector()
-  console.log({ atas: errorMsg });
   const [error, setError] = useState([]);
   const [input, setInput] = useState({
     name: "",
@@ -28,7 +26,6 @@ export default function Register() {
 
   useEffect(() => {
     if (successRegister && history.location.pathname === "/register") {
-      console.log("masuuk");
       dispatch(allAction.organizer.setRegister(false));
       history.push("/login");
     }

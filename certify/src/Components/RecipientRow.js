@@ -55,7 +55,6 @@ export default function RecipientRow(props) {
         email,
         certificateNumber,
       };
-      console.log({ input });
       await dispatch(
         allAction.recipient.editRecipients({
           data: input,

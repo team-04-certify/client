@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import allActions from "../Store/Actions";
 
-// import img from "../assets/landing-page.png";
 
 export default function LandingPage() {
   const styles = {
@@ -31,10 +30,6 @@ export default function LandingPage() {
   const history = useHistory();
   useEffect(() => {
     dispatch(allActions.organizer.setPage(history.location.pathname));
-
-    // if (localStorage.getItem("access_token")) {
-    //   history.push("/events");
-    // }
   }, []);
 
   return (

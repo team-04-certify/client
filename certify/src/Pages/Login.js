@@ -26,14 +26,12 @@ export default function Login() {
     dispatch(allActions.organizer.setPage(history.location.pathname));
 
     if (isLogin || localStorage.getItem("access_token")) {
-      console.log("masuuk");
       dispatch(allActions.organizer.setLogin(false));
       history.push("/events");
     }
   }, [isLogin]);
 
   const handleOnChange = (e) => {
-    console.log(input);
     setInput({
       ...input,
       [e.target.id]: e.target.value,
@@ -41,7 +39,6 @@ export default function Login() {
   };
 
   const handleOnSubmit = () => {
-    console.log(input);
     dispatch(allActions.organizer.getLogin(input));
     setInput({
       email: "",
@@ -78,7 +75,6 @@ export default function Login() {
       className="d-flex justify-content-center align-items-center"
       style={{ padding: "60px" }}
     >
-      {console.log({ error: error.message })}
       <div style={styles.form}>
         <h4 style={styles.title}>Login</h4>
         <p style={{ color: "red" }}>{error.message}</p>

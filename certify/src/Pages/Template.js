@@ -67,24 +67,7 @@ export default function Template() {
     setTimeout(() => {
       history.push(`/${eventId}/recipients`);
     }, 3000);
-
-    // if (loading) {
-    //   console.log(loading, "1");
-    //   setSpinnerLoading(`<Spinner
-    //   style={{ position: "absolute", top: "50%", left: "50%" }}
-    //   animation="border"
-    //   />`);
-    // } else {
-    //   console.log(loading, "2");
-    //   history.push(`/${eventId}/recipients`);
-    // }
   }
-
-  // useEffect(() => {
-  //   if (loading) {
-  //     setSpinnerLoading(true);
-  //   }
-  // }, [loading]);
 
   const styles = {
     image: {
