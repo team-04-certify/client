@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:4000";
+const baseUrl = "https://certify-app01.herokuapp.com";
 
 const setLoading = (payload) => {
   return { type: "SET_LOADING", payload };
