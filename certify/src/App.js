@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Recipients from "./Pages/Recipients";
@@ -20,11 +19,10 @@ import {
   NavbarHome,
   NavbarDashboard,
   NavbarInformation,
-  ValidateCard,
+  NavbarValidate,
 } from "./Components";
 
 function App() {
-  const history = useHistory();
   const page = useSelector((state) => state.organizer.page);
 
   useEffect(() => {
@@ -65,6 +63,7 @@ function App() {
           <UpdateEvent />
         </Route>
         <Route path="/certificate/:recipientId">
+          <NavbarValidate />
           <Validation />
         </Route>
         <Route path="/create-event">

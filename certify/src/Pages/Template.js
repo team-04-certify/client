@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 import allAction from "../Store/Actions";
 
-import { Form, Button, Container, input } from "react-bootstrap";
-import RecipientRow from "../Components/RecipientRow";
+import { Form, Button } from "react-bootstrap";
 import img1 from "../assets/template1.png";
 import img2 from "../assets/template2.png";
 import img3 from "../assets/template3.png";
-import { Spinner } from "react-bootstrap";
 
 export default function Template() {
   const [input, setInput] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
   const { eventId } = useParams();
-  const loading = useSelector((state) => state.recipient.loading);
+  const inputRef = useRef(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertUpload, setShowAlertUpload] = useState(false);
   const [templateNumber, setTemplateNumber] = useState(1);
@@ -40,7 +38,7 @@ export default function Template() {
           eventId,
         })
       );
-
+      inputRef.current.value = "";
       setTimeout(() => {
         setShowAlertUpload(false);
       }, 3000);
@@ -54,7 +52,7 @@ export default function Template() {
   }
 
   async function generateAndSendCertificate() {
-    let temp = await dispatch(
+    await dispatch(
       allAction.recipient.sendCertificate({
         eventId,
         access_token: localStorage.access_token,
@@ -90,10 +88,10 @@ export default function Template() {
       {showAlert ? (
         <Alert
           variant="filled"
-          style={{ paddingLeft: "45%" }}
+          style={{ paddingLeft: "45%", margin: 20 }}
           severity="success"
         >
-          Success send template
+          Success send certificate
         </Alert>
       ) : (
         <p></p>
@@ -101,7 +99,7 @@ export default function Template() {
       {showAlertUpload ? (
         <Alert
           variant="filled"
-          style={{ paddingLeft: "45%" }}
+          style={{ paddingLeft: "45%", margin: 20 }}
           severity="success"
         >
           Success add template
@@ -140,6 +138,7 @@ export default function Template() {
               type="file"
               onChange={(e) => getFile(e)}
               accept=".ppt,.pptx"
+              ref={inputRef}
             />
             <button onClick={(e) => uploadFile(e)} className="btn btn-primary">
               Upload file

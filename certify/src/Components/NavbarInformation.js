@@ -61,7 +61,6 @@ export default function NavbarInformation() {
           <Nav.Link style={styles.title} onClick={handleEdit}>
             Edit event
           </Nav.Link>
-          <Nav.Link style={styles.title}>Certificate design</Nav.Link>
           <Nav.Link style={styles.title} onClick={handleRecipient}>
             Recipients
           </Nav.Link>
