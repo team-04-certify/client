@@ -92,7 +92,7 @@ export default function InformationCard({ event }) {
       ) : (
         <p></p>
       )}
-      <Card className="info-card">
+      <Card className="card row info-card">
         {!event.banner ? (
           <div className="upload-cont card">
             <form action="">
@@ -110,23 +110,59 @@ export default function InformationCard({ event }) {
             </form>
           </div>
         ) : (
-          <div className="banner-img">
+          <div className="col-md banner-img">
             <img style={styles.image} src={event.banner} alt="" />
           </div>
         )}
-        <div className="card-desc">
-          <div className="card-col">
-            <h5>Title</h5>
-            <h5>Date</h5>
-            <h5>Type</h5>
-            <h5>Recipients</h5>
-          </div>
-          <div className="card-col">
-            <h5 className="bolder">{event.title}</h5>
-            <h5 className="bolder">{dateString}</h5>
-            <h5 className="bolder">{event.type}</h5>
-            <h5 className="bolder">{recipients.length}</h5>
-          </div>
+        <div className="col-md card-desc">
+          <thead>
+            <tr className="card-col">
+              <td>
+                <p>
+                  Title
+                </p>
+              </td>
+              <td>
+                <p>
+                  Date
+                </p>
+              </td>
+              <td>
+                <p>
+                  Type
+                </p>
+              </td>
+              <td>
+                <p>
+                  Recipients
+                </p>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="card-col">
+              <td className="bolder">
+                <p>
+                  {event.title}
+                </p>
+              </td>
+              <td className="bolder">
+                <p>
+                  {dateString}
+                </p>
+              </td>
+              <td className="bolder">
+                <p>
+                  {event.type}
+                </p>
+              </td>
+              <td className="bolder">
+                <p>
+                  {recipients.length}
+                </p>
+              </td>
+            </tr>
+          </tbody>
         </div>
       </Card>
     </div>

@@ -29,7 +29,6 @@ export default function ValidateCard({ recipient }) {
             {
               recipient.Event.banner?
               <img
-                style={styles.image}
                 src={recipient.Event.banner}
                 alt={recipient.Event.title}
               />:
