@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import allActions from "../Store/Actions";
 
-import img from "../assets/landing-page.png";
+// import img from "../assets/landing-page.png";
 
 export default function LandingPage() {
   const styles = {
@@ -51,7 +51,7 @@ export default function LandingPage() {
           </Button>
         </Col>
         <Col sm={4}>
-          <img style={styles.image} className="image" src={img} alt="" />
+          <img style={styles.image} className="image" src="https://certifyfilebucket.s3-ap-southeast-1.amazonaws.com/landing-page.webp" alt="" />
         </Col>
       </Row>
     </Container>
