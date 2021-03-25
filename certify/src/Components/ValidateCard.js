@@ -37,18 +37,54 @@ export default function ValidateCard({ recipient }) {
             }
           </div>
         <div className="col-md card-desc">
-          <div className="card-col">
-            <p>Name</p>
-            <p>Event Name</p>
-            <p>Certificate Number</p>
-            <p>Organizer</p>
-          </div>
-          <div className="card-col">
-            <p className="bolder">{recipient.name}</p>
-            <p className="bolder">{recipient.Event.title}</p>
-            <p className="bolder">{recipient.certificateNumber}</p>
-            <p className="bolder">{recipient.Event.Organizer.name}</p>
-          </div>
+          <thead>
+            <tr className="card-col">
+              <td>
+                <p>
+                  Name
+                </p>
+              </td>
+              <td>
+                <p>
+                  Event Name
+                </p>
+              </td>
+              <td>
+                <p>
+                Certificate Number
+                </p>
+              </td>
+              <td>
+                <p>
+                Organizer
+                </p>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="card-col">
+              <td className="bolder">
+                <p>
+                  {recipient.name}
+                </p>
+              </td>
+              <td className="bolder">
+                <p>
+                {recipient.Event.title}
+                </p>
+              </td>
+              <td className="bolder">
+                <p>
+                {recipient.certificateNumber}
+                </p>
+              </td>
+              <td className="bolder">
+                <p>
+                  {recipient.Event.Organizer.name}
+                </p>
+              </td>
+            </tr>
+          </tbody>
         </div>
       </Card>
     );

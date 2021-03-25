@@ -328,6 +328,11 @@ button.btn-large {
   font-weight: 800;
 }
 
+.card-col p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
 /* Information event ends */
 /* Validation  */
 .validation-cont {
