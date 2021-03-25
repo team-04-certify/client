@@ -1,4 +1,9 @@
 /* Global */
+html,
+body,
+* {
+  font-family: 'Open Sans', sans-serif;
+}
 .btn {
   border-radius: 0 !important;
 }
@@ -67,19 +72,32 @@ section {
 /* Landing page */
 .landing-page {
   margin-top: 50px;
-  padding-left: 30px;
   padding-top: 40px;
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  height: 90vh !important;
 }
 
-.landing-page .h1 {
-  padding-top: 50px;
+.landing-page .row {
+  height: 100%;
+}
+
+.landing-page .col {
+  height: 100%;
 }
 
 .landing-page h1 {
-  font-weight: bold;
+  font-family: 'Montserrat',
+  sans-serif;
+  ;
+  font-weight: 800 !important;
+  margin-bottom: 20px;
+  }
+
+  .landing-page img {
+    width: 100%;
 }
 /* Landing page ends */
 
