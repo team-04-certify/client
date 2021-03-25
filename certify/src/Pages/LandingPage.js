@@ -8,11 +8,6 @@ import allActions from "../Store/Actions";
 
 export default function LandingPage() {
   const styles = {
-    image: {
-      height: "70%",
-      justifyContent: "end",
-      marginTop: 20,
-    },
     button: {
       borderRadius: 0,
       backgroundColor: "#00509D",
@@ -34,19 +29,18 @@ export default function LandingPage() {
 
   return (
     <Container className="landing-page">
-      <Row>
-        <Col style={styles.title} sm={6}>
-          <h1>No more worry</h1>
-          <h1>about your certificate</h1>
-          <p>Create, Send & Validate your event certificate</p>
+      <Row className="d-flex align-items-center flex-row">
+        <Col className="d-flex align-items-start justify-content-center flex-column " sm={6}>
+          <h1>No more worry about your certificate</h1>
+          <p>Create, send & validate your event certificate</p>
           <Button style={styles.button} variant="outline-primary">
             <Link style={styles.button} to="/login">
               Create certificate
             </Link>
           </Button>
         </Col>
-        <Col sm={4}>
-          <img style={styles.image} className="image" src="https://certifyfilebucket.s3-ap-southeast-1.amazonaws.com/landing-page.webp" alt="" />
+        <Col className="d-flex align-items-start justify-content-center flex-column">
+          <img className="image" src="https://certifyfilebucket.s3-ap-southeast-1.amazonaws.com/landing-page.webp" alt="" />
         </Col>
       </Row>
     </Container>
