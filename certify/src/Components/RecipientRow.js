@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import allAction from "../Store/Actions";
-import { ModalDelete } from "../Components/";
 import { Modal, Button } from "react-bootstrap";
 
 export default function RecipientRow(props) {

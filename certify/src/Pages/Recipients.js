@@ -6,7 +6,7 @@ import { Alert } from "@material-ui/lab";
 
 import allAction from "../Store/Actions";
 
-import { Form, Button, Container, input, Spinner } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import RecipientRow from "../Components/RecipientRow";
 import allActions from "../Store/Actions";
 
@@ -148,20 +148,20 @@ export default function Recipients() {
         <div className="recipient-tab d-flex justify-content-center flex-column">
           <div className="btn-cont d-flex flex-row justify-content-between">
             {!showAdd ? (
-              <button onClick={(e) => clickShowAdd(e)} className="btn btn-primary">
+              <button
+                onClick={(e) => clickShowAdd(e)}
+                className="btn btn-primary"
+              >
                 <i className="bi bi-plus-circle-fill mr-2"></i>
                 Add recipient
               </button>
             ) : null}
-            <button
-              onClick={getUpdate}
-              className="btn btn-secondary"
-            >
+            <button onClick={getUpdate} className="btn btn-secondary">
               <i class="bi bi-arrow-repeat"></i>
             </button>
           </div>
           {showAlert && (
-            <Alert variant="filled" severity="success">
+            <Alert style={{ marginTop: 5 }} variant="filled" severity="success">
               Success added recipients
             </Alert>
           )}

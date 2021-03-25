@@ -1,12 +1,17 @@
 import React from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ModalDelete } from "../Components/";
-import img from "../assets/sertifikat.png";
 import allActions from "../Store/Actions";
 
-export default function EventCard({ title, date, type, event, participants, banner }) {
+export default function EventCard({
+  title,
+  date,
+  event,
+  participants,
+  banner,
+}) {
   const styles = {
     card: {
       marginBottom: 20,
@@ -30,7 +35,6 @@ export default function EventCard({ title, date, type, event, participants, bann
   };
   const history = useHistory();
   const dispatch = useDispatch();
-  const recipients = useSelector((state) => state.recipient.recipients);
 
   let dateString = new Date(date).toLocaleDateString(undefined);
 
@@ -57,18 +61,10 @@ export default function EventCard({ title, date, type, event, participants, bann
     );
   }
 
-  function onConfirm() {
-    // Preform your action.
-  }
-
   return (
     <Card className="large-card" style={styles.card}>
       <div>
-        <img
-          style={styles.image}
-          src={banner}
-          alt='event banner'
-        />
+        <img style={styles.image} src={banner} alt="event banner" />
       </div>
       <div>
         <h5>{title}</h5>

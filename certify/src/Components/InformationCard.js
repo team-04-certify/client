@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../Store/Actions";
 import { Alert } from "@material-ui/lab";
@@ -118,48 +118,32 @@ export default function InformationCard({ event }) {
           <thead>
             <tr className="card-col">
               <td>
-                <p>
-                  Title
-                </p>
+                <p>Title</p>
               </td>
               <td>
-                <p>
-                  Date
-                </p>
+                <p>Date</p>
               </td>
               <td>
-                <p>
-                  Type
-                </p>
+                <p>Type</p>
               </td>
               <td>
-                <p>
-                  Recipients
-                </p>
+                <p>Recipients</p>
               </td>
             </tr>
           </thead>
           <tbody>
             <tr className="card-col">
               <td className="bolder">
-                <p>
-                  {event.title}
-                </p>
+                <p>{event.title}</p>
               </td>
               <td className="bolder">
-                <p>
-                  {dateString}
-                </p>
+                <p>{dateString}</p>
               </td>
               <td className="bolder">
-                <p>
-                  {event.type}
-                </p>
+                <p>{event.type}</p>
               </td>
               <td className="bolder">
-                <p>
-                  {recipients.length}
-                </p>
+                <p>{recipients.length}</p>
               </td>
             </tr>
           </tbody>

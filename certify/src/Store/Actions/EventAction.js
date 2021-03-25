@@ -121,8 +121,8 @@ const uploadTemplate = (payload) => {
         data: payload.data,
         headers: {
           access_token: payload.access_token,
-          'content-type': 'multipart/form-data' 
-        }
+          "content-type": "multipart/form-data",
+        },
       });
       dispatch(getEvent(payload));
     } catch (err) {
@@ -140,8 +140,8 @@ const uploadBanner = (payload) => {
         data: payload.data,
         headers: {
           access_token: payload.access_token,
-          'content-type': 'multipart/form-data' 
-        }
+          "content-type": "multipart/form-data",
+        },
       });
       dispatch(getEvent(payload));
     } catch (err) {
@@ -161,5 +161,5 @@ export default {
   updateEvent,
   deleteEvent,
   uploadTemplate,
-  uploadBanner
+  uploadBanner,
 };
