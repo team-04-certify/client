@@ -81,11 +81,11 @@ export default function InformationCard({ event }) {
   };
 
   return (
-    <>
-      {showAlert ? (
+    <div className="d-flex flex-column">
+      {true ? (
         <Alert
           variant="filled"
-          style={{ paddingLeft: "45%" }}
+          style={{ paddingLeft: "45%", marginBottom: "15px" }}
           severity="success"
         >
           Success add banner
@@ -130,6 +130,6 @@ export default function InformationCard({ event }) {
           </div>
         </div>
       </Card>
-    </>
+    </div>
   );
 }
