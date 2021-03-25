@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
-import img from "../assets/sertifikat.png";
 import { useSelector, useDispatch } from "react-redux";
 import allActions from "../Store/Actions";
 import { Alert } from "@material-ui/lab";
@@ -82,7 +81,7 @@ export default function InformationCard({ event }) {
 
   return (
     <div className="d-flex flex-column">
-      {true ? (
+      {showAlert ? (
         <Alert
           variant="filled"
           style={{ paddingLeft: "45%", marginBottom: "15px" }}
@@ -106,7 +105,7 @@ export default function InformationCard({ event }) {
                 onClick={(e) => uploadFile(e)}
                 className="btn btn-primary"
               >
-                Upload file
+                Upload banner
               </button>
             </form>
           </div>
