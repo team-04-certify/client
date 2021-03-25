@@ -10,39 +10,44 @@ export default function ValidateCard({ recipient }) {
             <img src={recipient.Event.banner} alt={recipient.Event.title} />
           ) : null}
         </div>
-        <div className="col-md card-desc">
-          <thead>
-            <tr className="card-col">
-              <td>
-                <p>Name</p>
-              </td>
-              <td>
-                <p>Event Name</p>
-              </td>
-              <td>
-                <p>Certificate Number</p>
-              </td>
-              <td>
-                <p>Organizer</p>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="card-col">
-              <td className="bolder">
-                <p>{recipient.name}</p>
-              </td>
-              <td className="bolder">
-                <p>{recipient.Event.title}</p>
-              </td>
-              <td className="bolder">
-                <p>{recipient.certificateNumber}</p>
-              </td>
-              <td className="bolder">
-                <p>{recipient.Event.Organizer.name}</p>
-              </td>
-            </tr>
-          </tbody>
+        <div className="col-md validate-col">
+          <div className="card-desc">
+            <thead>
+              <tr className="card-col">
+                <td>
+                  <p>Name</p>
+                </td>
+                <td>
+                  <p>Event Name</p>
+                </td>
+                <td>
+                  <p>Certificate Number</p>
+                </td>
+                <td>
+                  <p>Organizer</p>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="card-col">
+                <td className="bolder">
+                  <p>{recipient.name}</p>
+                </td>
+                <td className="bolder">
+                  <p>{recipient.Event.title}</p>
+                </td>
+                <td className="bolder">
+                  <p>{recipient.certificateNumber}</p>
+                </td>
+                <td className="bolder">
+                  <p>{recipient.Event.Organizer.name}</p>
+                </td>
+              </tr>
+            </tbody>
+          </div>
+          <span class="badge">
+            <i class="bi bi-patch-check-fill mr-2"></i>Valid certificate
+          </span>
         </div>
       </Card>
     );
