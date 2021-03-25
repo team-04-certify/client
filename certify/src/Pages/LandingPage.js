@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import allActions from "../Store/Actions";
 
-import img from "../assets/landing-page.webp";
+import img from "../assets/landing-page.png";
 
 export default function LandingPage() {
   const styles = {
