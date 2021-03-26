@@ -9,6 +9,11 @@ import img1 from "../assets/template1.png";
 import img2 from "../assets/template2.png";
 import img3 from "../assets/template3.png";
 
+import bracketIcon from "../assets//curly-bracket-icon.svg";
+import designIcon from "../assets/design-icon.svg";
+import fileIcon from "../assets/file-icon.svg";
+
+
 export default function Template() {
   const [input, setInput] = useState(null);
   const history = useHistory();
@@ -147,6 +152,52 @@ export default function Template() {
           <Button className="btn-large" onClick={generateAndSendCertificate}>
             Send
           </Button>
+        </div>
+        <div className="tips-cont">
+          <h3 className="text-center mb-4">How to create your own template</h3>
+          <div className="row">
+            <div className="col">
+              <div className="img">
+                <img src={fileIcon} alt="file-icon.svg" />
+              </div>
+              <div className="title">
+                <h5>.PPTX file</h5>
+              </div>
+              <div className="desc">
+                <p>
+                  Template file must be <b>.ppt</b> or <b>.pptx</b>. You can create this file with PowerPoint or Google Slide.
+                </p>
+                <p>Create Google Slide <a href="https://slide.new" target="_blank">here</a></p>
+              </div>
+            </div>
+            <div className="col">
+              <div className="img">
+                <img src={bracketIcon} alt="curly-bracket-icon.svg" />
+              </div>
+              <div className="title">
+                <h5>Use curly bracket as variable</h5>
+              </div>
+              <div className="desc">
+                <p>
+                  Create your certificate field (e.q. name or event title) with curly bracket.
+                </p>
+                <p>Download template <a href="https://drive.google.com/file/d/1NaQVIUu8vWvc2R8YyaIRHX7VimxKrZFh/view?usp=drivesdk" target="_blank">here</a></p>
+              </div>
+            </div>
+            <div className="col">
+              <div className="img">
+                <img src={designIcon} alt="design-icon.svg" />
+              </div>
+              <div className="title">
+                <h5>Your design does the rest</h5>
+              </div>
+              <div className="desc">
+                <p>
+                  Design your own template freely. We do not give you limitation.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
